@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+/* Smaller global type scale (everything is rem-based, so this shrinks the
+   whole UI proportionally). */
+html {
+  font-size: 13px;
+}
+
+body {
+  font-size: 0.95rem;
+  background: radial-gradient(1200px 600px at 80% -10%, #1b1140 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 10%, #06251f 0%, transparent 55%), #0a0a0f;
+  color: #e9e9f2;
+}
+
+a {
+  color: inherit;
+}
+
+.prose-md h1 { @apply text-3xl font-bold mt-2 mb-4; }
+.prose-md h2 { @apply text-xl font-semibold mt-8 mb-3 text-accent2; }
+.prose-md h3 { @apply text-lg font-semibold mt-6 mb-2; }
+.prose-md p { @apply my-3 leading-relaxed text-zinc-200; }
+.prose-md ul { @apply list-disc pl-6 my-3 space-y-1; }
+.prose-md table { @apply w-full text-sm my-4 border-collapse; }
+.prose-md th { @apply text-left p-2 border-b border-edge text-muted font-medium; }
+.prose-md td { @apply p-2 border-b border-edge/50 align-top; }
+.prose-md code { @apply font-mono text-sm; }
+.prose-md a { @apply text-accent underline underline-offset-2; }

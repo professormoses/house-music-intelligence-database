@@ -1,0 +1,45 @@
+{
+  "name": "house-music-intelligence-db",
+  "version": "1.0.0",
+  "private": true,
+  "description": "House Music Intelligence Database — the agent-first, citation-grade discovery engine for house music DJs, producers, labels, events and booking intelligence.",
+  "scripts": {
+    "predev": "node scripts/set-db-provider.mjs",
+    "dev": "next dev",
+    "prebuild": "node scripts/set-db-provider.mjs",
+    "build": "prisma generate && prisma db push --skip-generate && tsx prisma/seed.ts && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "node scripts/set-db-provider.mjs && prisma generate",
+    "db:push": "node scripts/set-db-provider.mjs && prisma db push",
+    "db:generate": "prisma generate",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:studio": "prisma studio",
+    "setup": "node scripts/set-db-provider.mjs && prisma generate && prisma db push && tsx prisma/seed.ts",
+    "repopulate": "tsx scripts/repopulate.ts",
+    "export:sheets": "tsx scripts/export-sheets.ts"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "next": "^14.2.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "optionalDependencies": {
+    "googleapis": "^144.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "prisma": "^5.22.0",
+    "tailwindcss": "^3.4.14",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+.env
+.env.local
+*.db
+*.db-journal
+prisma/dev.db*
+.DS_Store
+exports/*.csv
+exports/*.json
+exports/*.ndjson
+!exports/.gitkeep

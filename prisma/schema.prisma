@@ -1,0 +1,284 @@
+// House Music Intelligence Database — data model
+// Default datasource is SQLite for zero-config local dev.
+// To run on Postgres: change provider to "postgresql" and point
+// DATABASE_URL at your instance (see .env.example).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Rich array/object fields (genres lists, links, releases, metrics, scores,
+// per-field source citations, etc.) are stored as JSON strings inside
+// `profile` so the schema stays portable across SQLite and Postgres.
+// The fields promoted to real columns below are the ones the directory
+// filters and sitemaps query directly.
+model Artist {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  artistName       String
+  realName         String?
+  originCity       String?
+  originCountry    String?
+  currentCity      String?
+  currentCountry   String?
+  primaryScene     String?
+  genresCsv        String   @default("") // lowercased, comma-joined for filtering
+  subgenresCsv     String   @default("")
+  monthlyListeners Int?
+  spotifyFollowers Int?
+  instagramFollowers Int?
+  isEmerging       Boolean  @default(false)
+  isFemale         Boolean  @default(false)
+  isLabelOwner     Boolean  @default(false)
+  isLegend         Boolean  @default(false)
+  hasContact       Boolean  @default(false)
+  hasUpcoming      Boolean  @default(false)
+  blackLineage     Boolean  @default(false)
+  confidenceScore  Int      @default(0)
+  lastVerifiedDate String?  // ISO date
+  profile          String   @default("{}") // full canonical record as JSON
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  releases     ArtistRelease[]
+  metrics      ArtistSocialMetric[]
+  verifications FieldVerification[]
+  contacts     Contact[]
+
+  @@index([primaryScene])
+  @@index([originCountry])
+}
+
+model ArtistRelease {
+  id          String  @id @default(cuid())
+  artistId    String
+  artist      Artist  @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  title       String
+  label       String?
+  releaseDate String?
+  type        String? // single | ep | album | remix | compilation
+  url         String?
+  sourceUrl   String?
+  createdAt   DateTime @default(now())
+
+  @@index([artistId])
+}
+
+model ArtistSocialMetric {
+  id        String  @id @default(cuid())
+  artistId  String
+  artist    Artist  @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  platform  String  // spotify | instagram | youtube | soundcloud | tiktok | bandcamp
+  metric    String  // followers | monthly_listeners | subscribers
+  value     Int
+  sourceUrl String?
+  capturedAt DateTime @default(now())
+
+  @@index([artistId, platform])
+}
+
+// Per-field provenance: every important fact is traceable to a source.
+model FieldVerification {
+  id              String  @id @default(cuid())
+  artistId        String?
+  artist          Artist? @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  entityType      String  @default("artist") // artist | label | event | venue
+  entityId        String?
+  fieldName       String
+  fieldValue      String?
+  sourceName      String?
+  sourceUrl       String?
+  extractionMethod String? // api | parsed_html | manual | derived
+  confidenceScore Int     @default(0)
+  lastVerifiedDate String?
+  createdAt       DateTime @default(now())
+
+  @@index([entityType, entityId])
+  @@index([fieldName])
+}
+
+model Label {
+  id              String  @id @default(cuid())
+  slug            String  @unique
+  labelName       String
+  website         String?
+  country         String?
+  city            String?
+  genresCsv       String  @default("")
+  artistRoster    String  @default("[]") // JSON array of artist slugs/names
+  demoEmail       String?
+  contactEmail    String?
+  instagram       String?
+  beatport        String?
+  traxsource      String?
+  discogs         String?
+  profile         String  @default("{}")
+  sourceUrls      String  @default("[]")
+  confidenceScore Int     @default(0)
+  lastVerifiedDate String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Event {
+  id              String  @id @default(cuid())
+  slug            String  @unique
+  eventName       String
+  date            String?
+  city            String?
+  country         String?
+  venue           String?
+  promoter        String?
+  lineup          String  @default("[]") // JSON array
+  ticketLink      String?
+  sourceUrl       String?
+  genresCsv       String  @default("")
+  confidenceScore Int     @default(0)
+  lastVerifiedDate String?
+  createdAt       DateTime @default(now())
+}
+
+model Venue {
+  id              String  @id @default(cuid())
+  slug            String  @unique
+  venueName       String
+  city            String?
+  country         String?
+  website         String?
+  instagram       String?
+  bookingEmail    String?
+  genresSupported String  @default("")
+  artistsBooked   String  @default("[]")
+  sourceUrls      String  @default("[]")
+  confidenceScore Int     @default(0)
+  lastVerifiedDate String?
+  createdAt       DateTime @default(now())
+}
+
+model Contact {
+  id              String  @id @default(cuid())
+  artistId        String?
+  artist          Artist? @relation(fields: [artistId], references: [id], onDelete: SetNull)
+  name            String?
+  role            String? // manager | booking | press | label | general
+  email           String?
+  company         String?
+  sourceUrl       String?
+  confidenceScore Int     @default(0)
+  lastVerifiedDate String?
+  createdAt       DateTime @default(now())
+
+  @@index([artistId])
+}
+
+// Registry of every data source + its compliance posture.
+model Source {
+  id              String  @id @default(cuid())
+  sourceName      String  @unique
+  sourceType      String  // api | catalog | streaming | events | press | social | search
+  baseUrl         String?
+  apiAvailable    Boolean @default(false)
+  scrapingAllowed Boolean @default(false) // per robots.txt / ToS at time of review
+  rateLimit       String?
+  status          String  @default("idle") // idle | ok | degraded | error
+  lastCrawledAt   String?
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model ChangeLog {
+  id         String  @id @default(cuid())
+  entityType String
+  entityId   String?
+  entitySlug String?
+  fieldName  String?
+  oldValue   String?
+  newValue   String?
+  changeType String  // create | update | merge | delete | refresh
+  source     String?
+  createdAt  DateTime @default(now())
+
+  @@index([entityType])
+  @@index([createdAt])
+}
+
+model ReviewQueue {
+  id         String  @id @default(cuid())
+  entityType String  @default("artist")
+  entityId   String?
+  entitySlug String?
+  reason     String
+  payload    String  @default("{}") // proposed value(s) as JSON
+  confidence Int     @default(0)
+  status     String  @default("pending") // pending | approved | rejected
+  createdAt  DateTime @default(now())
+
+  @@index([status])
+}
+
+// ── Knowledge graph layer ──────────────────────────────────────────────
+// Encyclopedic entities: history, origins, genres, places, venues, people,
+// movements, glossary terms, and direct-answer pages. These are the citable
+// "primary source" content that makes HMID authoritative, not just a directory.
+model Topic {
+  id              String  @id @default(cuid())
+  slug            String  @unique
+  title           String
+  type            String  // origins | history | genre | place | venue | person | movement | glossary | answer | timeline | page
+  summary         String?
+  body            String  @default("") // long-form Markdown
+  era             String?
+  city            String?
+  country         String?
+  question        String? // for type=answer
+  answer          String? // for type=answer: the direct, citable answer
+  relatedSlugs    String  @default("[]") // JSON array of topic/artist slugs
+  sources         String  @default("[]") // JSON array of { name, url, note }
+  confidenceScore Int     @default(0)
+  lastVerifiedDate String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([type])
+}
+
+// Typed edges of the knowledge graph. Subjects/objects are referenced by
+// (type, slug); objectLabel carries free-text nodes (a genre or place) that
+// don't have their own row yet. Every edge is sourced + confidence-scored.
+model Relationship {
+  id              String  @id @default(cuid())
+  subjectType     String  // artist | topic | label | genre | place | venue
+  subjectSlug     String
+  predicate       String  // pioneered | originated_in | resident_at | influenced_by | mentored | descended_from | part_of | founded | released_on | collaborated_with | played_at | popularized
+  objectType      String
+  objectSlug      String?
+  objectLabel     String? // human label when object has no row
+  sourceName      String?
+  sourceUrl       String?
+  confidenceScore Int     @default(0)
+  note            String?
+  createdAt       DateTime @default(now())
+
+  @@index([subjectType, subjectSlug])
+  @@index([objectType, objectSlug])
+  @@index([predicate])
+}
+
+model DuplicateMatch {
+  id          String  @id @default(cuid())
+  entityType  String  @default("artist")
+  primaryId   String
+  candidateId String
+  score       Float
+  signals     String  @default("[]") // JSON list of match signals
+  status      String  @default("pending") // pending | merged | distinct
+  createdAt   DateTime @default(now())
+
+  @@index([status])
+}
