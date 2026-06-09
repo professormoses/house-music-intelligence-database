@@ -95,7 +95,7 @@ export default async function ArtistPage({ params }: { params: { slug: string } 
         {a.bio_short && <p className="text-zinc-200 max-w-3xl">{a.bio_short}</p>}
         <div className="flex gap-2 flex-wrap text-xs">
           {a.genres.map((g) => (
-            <span key={g} className="px-2 py-1 rounded-full bg-panel border border-edge text-muted">{g}</span>
+            <Link key={g} href={`/?genre=${encodeURIComponent(g)}`} className="px-2 py-1 rounded-full bg-panel border border-edge text-muted hover:border-accent hover:text-white">{g}</Link>
           ))}
         </div>
       </header>

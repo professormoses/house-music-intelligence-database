@@ -151,8 +151,19 @@ export default async function HomePage({
                     <Link href={`/artist/${a.slug}`} className="hover:text-accent">{a.artist_name}</Link>
                   </td>
                   <td className="p-3 text-muted">{[a.origin_city, a.origin_country].filter(Boolean).join(', ')}</td>
-                  <td className="p-3 text-muted">{a.primary_scene}</td>
-                  <td className="p-3 text-muted">{a.genres.slice(0, 3).join(', ')}</td>
+                  <td className="p-3 text-muted">
+                    {a.primary_scene ? (
+                      <Link href={`/?scene=${encodeURIComponent(a.primary_scene)}`} className="hover:text-accent">{a.primary_scene}</Link>
+                    ) : ''}
+                  </td>
+                  <td className="p-3 text-muted">
+                    {a.genres.slice(0, 3).map((g, i) => (
+                      <span key={g}>
+                        <Link href={`/?genre=${encodeURIComponent(g)}`} className="hover:text-accent hover:underline">{g}</Link>
+                        {i < Math.min(3, a.genres.length) - 1 ? ', ' : ''}
+                      </span>
+                    ))}
+                  </td>
                   <td className="p-3 text-right tabular-nums">{a.monthly_listeners?.toLocaleString() ?? '—'}</td>
                   <td className="p-3 text-right tabular-nums text-accent2">{a.house_crew_priority_score}</td>
                   <td className="p-3 font-mono text-xs space-x-2">
