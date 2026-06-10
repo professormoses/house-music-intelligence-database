@@ -32,18 +32,22 @@ export interface DiscoverResult {
   byTag: Record<string, number>;
 }
 
+// Afro-focused tag set (deeper paging since we want a lot of them).
+export const AFRO_TAGS = ['afro house', 'afro tech', 'afro deep house', 'soulful house', '3 step', 'afro'];
+
 // Find and add up to `limit` NEW house artists from MusicBrainz. Idempotent
 // (skips anyone already in the DB), time-budgeted so it never hard-times-out.
-export async function discoverArtists(limit = 250, budgetMs = 45000): Promise<DiscoverResult> {
+// Pass `tagsOverride` (e.g. AFRO_TAGS) to target a sub-style.
+export async function discoverArtists(limit = 250, budgetMs = 45000, tagsOverride?: string[]): Promise<DiscoverResult> {
   const start = Date.now();
   const existing = new Set((await prisma.artist.findMany({ select: { slug: true } })).map((a) => a.slug));
   let added = 0;
   let scanned = 0;
   const byTag: Record<string, number> = {};
 
-  for (const tag of TAGS) {
+  for (const tag of (tagsOverride && tagsOverride.length ? tagsOverride : TAGS)) {
     if (added >= limit || Date.now() - start > budgetMs) break;
-    for (const offset of [0, 100, 200]) {
+    for (const offset of [0, 100, 200, 300, 400]) {
       if (added >= limit || Date.now() - start > budgetMs) break;
       let data: any;
       try {

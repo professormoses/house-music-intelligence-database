@@ -298,6 +298,64 @@ His productions and remixes — including "Your Love" (with Jamie Principle) and
     sources: [WIKI('House music', 'House_music'), WIKI('Techno', 'Techno')],
     confidenceScore: 82,
   },
+
+  // ── Afro House ──
+  {
+    slug: 'history-of-afro-house',
+    title: 'The History of Afro House',
+    type: 'history',
+    era: '1990s–present',
+    city: 'Johannesburg',
+    country: 'South Africa',
+    summary:
+      'Afro House emerged in 1990s South Africa, fusing imported Chicago and New York house with kwaito, mbaqanga, traditional rhythms, hand percussion and African-language vocals. South Africa remains its global heartland.',
+    body: `**Afro House** is a subgenre of house music that **emerged in South Africa in the 1990s**. Producers in the townships and cities of **Soweto, Johannesburg, Pretoria, Durban and Cape Town** took the imported sound of **Chicago and New York house** and fused it with **kwaito** (the slowed-down, distinctly South African house-rap hybrid of the early 1990s), **mbaqanga**, and traditional rhythms — building a sound that kept house's **4/4, four-on-the-floor pulse** while emphasising **hand percussion (congas, bongos, shakers, djembe)** and **vocals in African languages** like Zulu and Xhosa.
+
+A key nuance: the **sound dates to the 1990s**, but the genre **name "Afro House" was formalised later** — categorised on retailers like **Beatport and Traxsource in the early 2010s**. So the music predates its label.
+
+South Africa is, and remains, the genre's **heartland and dominant scene**. Its global figurehead is **Black Coffee**, born Nkosinathi Innocent Maphumulo (11 March 1976, Umlazi, KwaZulu-Natal) — widely called the **"king of Afro House."** His 2009 album *Home Brewed* (with the breakout "Superman" featuring Bucie) is a landmark, and in 2022 his album *Subconsciously* won the **Grammy for Best Dance/Electronic Album** — the first African artist to win the category.
+
+From this root grew two important offshoots: **Afro Tech** and **3-Step**. Today Afro House is a global movement, carried by South African legends and a new wave, an African diaspora, and a European crossover scene — but its DNA is unmistakably South African.
+
+_Note: published tempo claims for Afro House are inconsistent and unverified; credible practitioner sources loosely cluster it in the low-to-mid 120s BPM, but no precise range is asserted here._`,
+    relatedSlugs: ['afro-tech', '3-step', 'black-coffee', 'black-origins-of-house-music', 'chicago-house'],
+    sources: [
+      WIKI('Afro house', 'Afro_house'),
+      { name: 'Gray Area: How South Africa Created the Blueprint for Afro House', url: 'https://grayarea.co/magazine/how-south-africa-created-the-blueprint-for-afro-house' },
+      WIKI('Black Coffee (DJ)', 'Black_Coffee_(DJ)'),
+      { name: 'EDMProd: What is Afro House?', url: 'https://www.edmprod.com/what-is-afro-house/' },
+    ],
+    confidenceScore: 86,
+  },
+  {
+    slug: 'afro-tech',
+    title: 'Afro Tech',
+    type: 'genre',
+    era: '2010s–present',
+    country: 'South Africa',
+    summary:
+      'A harder, techno-leaning subgenre of Afro House that originated in South Africa in the 2010s — Afro House plus techno, heavy African percussion, and Xhosa/Zulu vocals.',
+    body: `**Afro Tech** (also Afro-tech) is a subgenre of **Afro House** that **originated and is predominantly made in South Africa**, emerging in the **2010s**. Sonically it is a **fusion of Afro House and techno** — harder, more percussive and less melodic than mainline Afro House — built on **African percussion (djembe, congas)** with vocals **predominantly in Xhosa and Zulu**.
+
+Early defining work includes **Caiiro's "Cries of the Motherland" (2016)**, with **Enoo Napa** and **Themba** among the sound's early practitioners. While South African in origin, its commercial infrastructure has grown to include international labels (e.g. Italy's **MoBlack Records**) and European producers — so it is most precisely described as **predominantly, not exclusively, South African**.`,
+    relatedSlugs: ['history-of-afro-house', '3-step'],
+    sources: [WIKI('Afro tech', 'Afro_tech'), { name: 'Mixmag: South Africa\'s AfroTech sound travels globally', url: 'https://mixmag.net' }],
+    confidenceScore: 82,
+  },
+  {
+    slug: '3-step',
+    title: '3-Step',
+    type: 'movement',
+    era: '2020–present',
+    city: 'Johannesburg',
+    country: 'South Africa',
+    summary:
+      'An emerging Afro House subgenre created by South African producer Thakzin in Johannesburg during the 2020 lockdowns, defined by a three-kick-drum rhythm.',
+    body: `**3-Step** is an emerging subgenre of **Afro House**, created by the South African producer **Thakzin** (from **Ivory Park, Johannesburg**) during the **2020 lockdowns**. Its signature is a **three-kick-drum rhythm** — three kicks per 4/4 bar instead of the standard four-on-the-floor — giving the music a distinctive lilt that has spread rapidly through the new wave of South African Afro House.`,
+    relatedSlugs: ['history-of-afro-house', 'afro-tech'],
+    sources: [{ name: 'Gray Area: 3-Step, The Next Sound in Afro House', url: 'https://grayarea.co/magazine/3-step-the-next-sound-in-afro-house' }],
+    confidenceScore: 78,
+  },
 ];
 
 export const SEED_RELATIONSHIPS: SeedRelationship[] = [
@@ -321,6 +379,16 @@ export const SEED_RELATIONSHIPS: SeedRelationship[] = [
   { subjectType: 'artist', subjectSlug: 'louie-vega', predicate: 'part_of', objectType: 'venue', objectSlug: 'paradise-garage', sourceName: 'Public sources', sourceUrl: 'https://en.wikipedia.org/wiki/Louie_Vega', confidenceScore: 70, note: 'NYC soulful/garage lineage' },
   { subjectType: 'artist', subjectSlug: 'kerri-chandler', predicate: 'influenced_by', objectType: 'venue', objectSlug: 'paradise-garage', sourceName: 'Public sources', sourceUrl: 'https://en.wikipedia.org/wiki/Kerri_Chandler', confidenceScore: 65 },
   { subjectType: 'artist', subjectSlug: 'honey-dijon', predicate: 'influenced_by', objectType: 'person', objectSlug: 'frankie-knuckles', sourceName: 'Public sources', sourceUrl: 'https://en.wikipedia.org/wiki/Honey_Dijon', confidenceScore: 68 },
+
+  // ── Afro House lineage ──
+  { subjectType: 'genre', subjectSlug: 'afro-house', predicate: 'originated_in', objectType: 'place', objectLabel: 'South Africa', sourceName: 'Wikipedia', sourceUrl: 'https://en.wikipedia.org/wiki/Afro_house', confidenceScore: 90 },
+  { subjectType: 'genre', subjectSlug: 'afro-house', predicate: 'descended_from', objectType: 'genre', objectLabel: 'Kwaito + Chicago House', sourceName: 'Wikipedia', sourceUrl: 'https://en.wikipedia.org/wiki/Afro_house', confidenceScore: 85 },
+  { subjectType: 'topic', subjectSlug: 'afro-tech', predicate: 'part_of', objectType: 'genre', objectLabel: 'Afro House', sourceName: 'Wikipedia', sourceUrl: 'https://en.wikipedia.org/wiki/Afro_tech', confidenceScore: 88 },
+  { subjectType: 'topic', subjectSlug: '3-step', predicate: 'part_of', objectType: 'genre', objectLabel: 'Afro House', sourceName: 'Gray Area', sourceUrl: 'https://grayarea.co/magazine/3-step-the-next-sound-in-afro-house', confidenceScore: 80 },
+  { subjectType: 'artist', subjectSlug: 'thakzin', predicate: 'pioneered', objectType: 'genre', objectLabel: '3-Step', sourceName: 'Gray Area', sourceUrl: 'https://grayarea.co/magazine/3-step-the-next-sound-in-afro-house', confidenceScore: 82 },
+  { subjectType: 'artist', subjectSlug: 'caiiro', predicate: 'pioneered', objectType: 'genre', objectLabel: 'Afro Tech', sourceName: 'Mixmag', sourceUrl: 'https://en.wikipedia.org/wiki/Afro_tech', confidenceScore: 78, note: '"Cries of the Motherland" (2016)' },
+  { subjectType: 'artist', subjectSlug: 'enoo-napa', predicate: 'part_of', objectType: 'genre', objectLabel: 'Afro Tech', sourceName: 'Wikipedia', sourceUrl: 'https://en.wikipedia.org/wiki/Afro_tech', confidenceScore: 76 },
+  { subjectType: 'artist', subjectSlug: 'black-coffee', predicate: 'popularized', objectType: 'topic', objectSlug: 'history-of-afro-house', sourceName: 'Wikipedia', sourceUrl: 'https://en.wikipedia.org/wiki/Black_Coffee_(DJ)', confidenceScore: 88, note: 'global "king of Afro House"' },
 ];
 
 export { V as TOPICS_VERSION };

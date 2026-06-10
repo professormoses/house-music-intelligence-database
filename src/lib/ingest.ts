@@ -257,3 +257,23 @@ export async function importRoster(target: number): Promise<{ added: number; tot
   }
   return { added, total, rosterRemaining: remaining, exhausted: remaining === 0 && total < target };
 }
+
+// Import the curated Afro House roster (all entries not already in the DB).
+export async function importAfroRoster(): Promise<{ added: number; total: number }> {
+  const { AFRO_ROSTER } = await import('../data/afro-house-roster');
+  let added = 0;
+  for (const entry of AFRO_ROSTER) {
+    const res = await ingestArtist({
+      name: entry.name,
+      country: entry.country,
+      scene: entry.scene,
+      genres: entry.genres,
+      flags: entry.flags,
+      sourceName: 'Curated Afro House roster (World Famous House Crew)',
+      sourceUrl: searchUrlFor('Google Search', entry.name),
+      confidence: 45,
+    });
+    if (res.created) added++;
+  }
+  return { added, total: await prisma.artist.count() };
+}
