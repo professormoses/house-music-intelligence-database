@@ -60,6 +60,10 @@ export function serializeArtist(row: Artist): ArtistProfile {
     last_verified_date: row.lastVerifiedDate ?? stored.last_verified_date ?? null,
   };
 
+  // Guard against redundant city == country (e.g. MusicBrainz country-level area).
+  if (merged.origin_city && merged.origin_city === merged.origin_country) merged.origin_city = null;
+  if (merged.current_city && merged.current_city === merged.current_country) merged.current_city = null;
+
   merged.scores = computeScores(merged);
   merged.suggested_citation = suggestedCitation({
     title: `${merged.artist_name} — House Music Artist Profile`,

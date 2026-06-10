@@ -37,8 +37,10 @@ export const musicbrainz: Connector = {
     const fields = [];
     if (detail.country)
       fields.push({ field: 'origin_country', value: detail.country, sourceName: 'MusicBrainz', sourceUrl, confidence: score, method: 'api' as const });
-    if (detail.area?.name)
-      fields.push({ field: 'origin_city', value: detail.area.name, sourceName: 'MusicBrainz', sourceUrl, confidence: Math.max(40, score - 20), method: 'api' as const });
+    // Only treat area as a city when it isn't the country itself (MB "area"
+    // is sometimes country-level, which would duplicate origin_country).
+    if (detail.area?.name && detail.area.name !== detail.country && detail.begin_area?.name !== detail.country)
+      fields.push({ field: 'origin_city', value: detail.begin_area?.name || detail.area.name, sourceName: 'MusicBrainz', sourceUrl, confidence: Math.max(40, score - 20), method: 'api' as const });
     const tags = (detail.tags ?? []).sort((a: any, b: any) => (b.count ?? 0) - (a.count ?? 0)).map((t: any) => t.name);
     if (tags.length)
       fields.push({ field: 'genres', value: tags.slice(0, 6).join(', '), sourceName: 'MusicBrainz', sourceUrl, confidence: Math.max(40, score - 15), method: 'api' as const });
