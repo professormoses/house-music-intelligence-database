@@ -19,6 +19,22 @@ export default function AdminActions({ token }: { token: string }) {
     }
   }
 
+  // Loop the batched link-enricher across the whole DB until done.
+  async function enrichLinks() {
+    setBusy('Enrich links');
+    let offset = 0, totalUpdated = 0, total = 0, guard = 0;
+    try {
+      while (guard++ < 100) {
+        setLog(`Enriching links from MusicBrainz… offset ${offset}${total ? ` / ${total}` : ''} (updated ${totalUpdated})`);
+        const res = await fetch(`/api/enrich-links`, { method: 'POST', headers: { 'x-admin-token': token, 'content-type': 'application/json' }, body: JSON.stringify({ offset, limit: 12 }) });
+        const d = await res.json();
+        if (d.error) { setLog('Error: ' + d.error); break; }
+        totalUpdated += d.updated || 0; total = d.total || total; offset = d.nextOffset;
+        if (d.done) { setLog(`Done. Enriched links for ${totalUpdated} of ${total} artists from MusicBrainz.`); break; }
+      }
+    } catch (e: any) { setLog('Error: ' + String(e?.message ?? e)); } finally { setBusy(null); }
+  }
+
   const Btn = ({ label, url, primary }: { label: string; url: string; primary?: boolean }) => (
     <button
       onClick={() => run(label, url)}
@@ -33,6 +49,9 @@ export default function AdminActions({ token }: { token: string }) {
     <div className="space-y-3">
       <div className="flex gap-2 flex-wrap">
         <Btn label="Repopulate Database" url="/api/repopulate" primary />
+        <button onClick={enrichLinks} disabled={!!busy} className="px-4 py-2 rounded-lg text-sm font-medium border border-edge text-zinc-200 hover:border-accent disabled:opacity-50">
+          {busy === 'Enrich links' ? '…' : 'Enrich links (MusicBrainz)'}
+        </button>
         <Btn label="Export to Sheets / Files" url="/api/export" />
         <Btn label="Export to Files only" url="/api/export?target=files" />
       </div>

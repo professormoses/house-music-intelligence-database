@@ -4,16 +4,26 @@ import { politeFetch, type Connector, type Enrichment } from './base';
 // User-Agent with contact, per their policy). Rate limit: ~1 req/sec.
 const BASE = 'https://musicbrainz.org/ws/2';
 
-const LINK_MAP: Record<string, string> = {
-  'official homepage': 'website',
-  'discogs': 'discogs',
-  'soundcloud': 'soundcloud',
-  'bandcamp': 'bandcamp',
-  'wikidata': 'wikidata',
-  'youtube': 'youtube',
-  'streaming': 'spotify',
-  'social network': 'instagram',
-};
+// Map a relation to a profile field by the URL HOST (reliable), not by
+// MusicBrainz's relation type (which lumps Instagram/Twitter/Facebook under
+// "social network" and Spotify under "free streaming", etc.).
+function linkKeyForUrl(url: string, relType: string): string | null {
+  const u = url.toLowerCase();
+  if (u.includes('instagram.com')) return 'instagram';
+  if (u.includes('tiktok.com')) return 'tiktok';
+  if (u.includes('open.spotify.com')) return 'spotify';
+  if (u.includes('music.apple.com')) return 'apple_music';
+  if (u.includes('youtube.com') || u.includes('youtu.be')) return 'youtube';
+  if (u.includes('soundcloud.com')) return 'soundcloud';
+  if (u.includes('bandcamp.com')) return 'bandcamp';
+  if (u.includes('beatport.com')) return 'beatport';
+  if (u.includes('traxsource.com')) return 'traxsource';
+  if (u.includes('discogs.com')) return 'discogs';
+  if (u.includes('ra.co') || u.includes('residentadvisor')) return 'resident_advisor';
+  if (u.includes('wikidata.org')) return 'wikidata';
+  if (relType === 'official homepage' || relType === 'official site') return 'website';
+  return null;
+}
 
 export const musicbrainz: Connector = {
   name: 'MusicBrainz',
@@ -46,11 +56,17 @@ export const musicbrainz: Connector = {
       fields.push({ field: 'genres', value: tags.slice(0, 6).join(', '), sourceName: 'MusicBrainz', sourceUrl, confidence: Math.max(40, score - 15), method: 'api' as const });
     fields.push({ field: 'musicbrainz', value: sourceUrl, sourceName: 'MusicBrainz', sourceUrl, confidence: 99, method: 'api' as const });
 
+    // Extract official/social/streaming links by URL host, and record each as a
+    // sourced field so it shows up with provenance.
     const links: Record<string, string> = { musicbrainz: sourceUrl };
     for (const rel of detail.relations ?? []) {
-      const key = LINK_MAP[rel.type];
       const target = rel.url?.resource;
-      if (key && target && !links[key]) links[key] = target;
+      if (!target) continue;
+      const key = linkKeyForUrl(target, rel.type);
+      if (key && !links[key]) {
+        links[key] = target;
+        fields.push({ field: key, value: target, sourceName: 'MusicBrainz', sourceUrl, confidence: 88, method: 'api' as const });
+      }
     }
 
     return { name: detail.name ?? name, fields, links };

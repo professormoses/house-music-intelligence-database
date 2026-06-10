@@ -171,7 +171,7 @@ export async function ingestFromSource(source: string, query: string, confidence
   const row = await prisma.artist.findUnique({ where: { slug } });
   if (!row) return { slug, created: stub.created, enriched: false, fieldsApplied: 0, note: 'artist vanished' };
   const profile: any = serializeArtist(row);
-  const linkFields = new Set(['website', 'instagram', 'spotify', 'soundcloud', 'beatport', 'traxsource', 'discogs', 'musicbrainz', 'youtube', 'bandcamp', 'resident_advisor', 'wikidata']);
+  const linkFields = new Set(['website', 'instagram', 'tiktok', 'spotify', 'apple_music', 'soundcloud', 'beatport', 'traxsource', 'discogs', 'musicbrainz', 'youtube', 'bandcamp', 'resident_advisor', 'wikidata']);
   let applied = 0;
   for (const f of result.fields) {
     const existing = profile.field_sources[f.field];
