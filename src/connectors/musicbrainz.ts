@@ -45,6 +45,13 @@ export const musicbrainz: Connector = {
     const score = Math.min(95, Math.round((hit.score ?? 70)));
 
     const fields = [];
+    if (detail.gender) {
+      const g = String(detail.gender).toLowerCase();
+      // Only assert clear male/female; leave anything ambiguous unknown so the
+      // writer uses the name rather than risk a misgender.
+      const gv = g === 'male' ? 'male' : g === 'female' ? 'female' : null;
+      if (gv) fields.push({ field: 'gender', value: gv, sourceName: 'MusicBrainz', sourceUrl, confidence: 85, method: 'api' as const });
+    }
     if (detail.country)
       fields.push({ field: 'origin_country', value: detail.country, sourceName: 'MusicBrainz', sourceUrl, confidence: score, method: 'api' as const });
     // Only treat area as a city when it isn't the country itself (MB "area"

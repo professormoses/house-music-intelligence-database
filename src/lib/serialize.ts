@@ -59,6 +59,8 @@ export function serializeArtist(row: Artist): ArtistProfile {
     instagram_followers: row.instagramFollowers ?? stored.instagram_followers ?? null,
     confidence_score: row.confidenceScore ?? stored.confidence_score ?? 0,
     last_verified_date: row.lastVerifiedDate ?? stored.last_verified_date ?? null,
+    gender: (row.gender as any) ?? stored.gender ?? (row.isFemale ? 'female' : null),
+    is_female: row.isFemale,
   };
 
   // Guard against redundant city == country (e.g. MusicBrainz country-level area).

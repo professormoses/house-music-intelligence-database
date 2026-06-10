@@ -52,6 +52,8 @@ export interface ArtistProfile {
   real_name?: string | null;
   aliases: string[];
   pronouns_if_publicly_listed?: string | null;
+  gender?: 'female' | 'male' | 'non-binary' | null;
+  is_female?: boolean;
   origin_city?: string | null;
   origin_country?: string | null;
   current_city?: string | null;

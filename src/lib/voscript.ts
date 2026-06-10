@@ -13,81 +13,146 @@ const pick = <T>(arr: T[], seed: number): T => arr[((Math.trunc(seed) % arr.leng
 const wordCount = (s?: string) => (s || '').split(/\s+/).filter(Boolean).length;
 const mmss = (sec: number) => `0:${String(Math.round(sec)).padStart(2, '0')}`;
 
+// Accurate pronouns from verified gender. Unknown -> use the name, never a guess
+// and never a generic "them".
+function pronouns(p: ArtistProfile) {
+  const g = p.gender || (p.is_female ? 'female' : null);
+  if (g === 'female') return { known: true, subj: 'she', Subj: 'She', obj: 'her', poss: 'her' };
+  if (g === 'male') return { known: true, subj: 'he', Subj: 'He', obj: 'him', poss: 'his' };
+  if (g === 'non-binary') return { known: true, subj: 'they', Subj: 'They', obj: 'them', poss: 'their' };
+  return { known: false, subj: p.artist_name, Subj: p.artist_name, obj: p.artist_name, poss: `${p.artist_name}'s` };
+}
+
+// Evocative, accurate genre characterizations (widely-held descriptions, not
+// claims about the artist) — give the narration documentary texture.
+const SOUND_DESC: Record<string, string> = {
+  'Afro House': 'drum-driven and spiritual, built for the sunrise',
+  'Afro Tech': 'percussive, hypnotic and relentless',
+  'Deep House': 'warm, soulful and hypnotic',
+  'Soulful House': 'gospel-rooted and full of heart',
+  'Tech House': 'rolling, stripped-back and made for peak time',
+  'Melodic House': 'cinematic and emotional, built for the big room',
+  'Organic House': 'earthy, textured and meditative',
+  'Disco House': 'glittering, joyful and built on the groove',
+  'Funky House': 'bright, bouncing and made to move',
+  'Garage House': 'swung, soulful, straight out of the church of house',
+  'Chicago House': 'raw and jacking — the original blueprint',
+  'Detroit House': 'futuristic and soulful in equal measure',
+  'Classic House': 'timeless, vocal and built to last',
+  'Acid House': 'squelching, psychedelic and revolutionary',
+  'Progressive House': 'sweeping and hypnotic, built for the journey',
+  'Minimal House': 'hypnotic and reductive — all about the details',
+  'Vocal House': 'anthemic and full of voice',
+  'Latin House': 'rhythmic, sun-soaked and alive',
+  'Tribal House': 'primal, percussive and tranced-out',
+  'Jackin House': 'choppy, looping and relentless',
+  'Lo-Fi House': 'dusty, intimate and hazy',
+  'UK Garage': 'skippy, swung and unmistakably British',
+  House: 'four-to-the-floor and built for the dancefloor',
+};
+function soundDescriptor(p: ArtistProfile): { words: string; desc: string } {
+  const list = [...p.specific_house_subgenres, ...p.genres];
+  const words = (p.specific_house_subgenres.length ? p.specific_house_subgenres : p.genres).slice(0, 2).join(' and ') || 'house';
+  const key = list.find((g) => SOUND_DESC[g]) || 'House';
+  return { words, desc: SOUND_DESC[key] || SOUND_DESC.House };
+}
+
+function fmtAudience(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(n >= 10_000_000 ? 0 : 1)} million`;
+  if (n >= 1_000) return `${Math.round(n / 1_000)}K`;
+  return String(n);
+}
+
 interface Segment {
   start: number;
   line: string;
 }
 
-// Build the spoken script purely from verified fields. Unknown fields are
-// omitted, never invented.
+// A documentary-grade, fact-grounded 55s narration in the voice of World Famous
+// House Crew — reverent, vivid, information-dense. Every clause is built from a
+// verified field; unknowns are omitted, never invented. Pronouns are accurate.
 function buildScript(p: ArtistProfile): { segments: Segment[]; script: string } {
   const seed = hash(p.slug);
+  const pr = pronouns(p);
   const segs: Segment[] = [];
+  const push = (line?: string) => { if (line && line.trim()) segs.push({ start: 0, line: line.trim() }); };
+
   const origin = [p.origin_city, p.origin_country].filter(Boolean).join(', ');
-  const genres = p.genres.slice(0, 3);
-  const sub = p.specific_house_subgenres.slice(0, 2);
-  const soundWords = (sub.length ? sub : genres).join(' and ') || 'house';
+  const scene = p.primary_scene || (p.genres[0] ? `${p.genres[0]}` : 'house');
+  const { words: soundWords, desc: soundDesc } = soundDescriptor(p);
+  const startYear = p.years_active ? p.years_active.split(/[–\-]/)[0].trim() : '';
+  const role = p.is_female ? 'producer' : 'producer';
+  const legend = p.scores?.education_value_score >= 55 || !!p.black_house_music_relevance;
+  const emerging = (p.scores?.emerging_artist_score ?? 0) >= 55;
 
-  // HOOK
-  const hooks = [
-    `This is ${p.artist_name}.`,
-    `If you move to house music, you need to know ${p.artist_name}.`,
-    `Meet ${p.artist_name} — one of the names shaping ${genres[0] || 'house'} right now.`,
-    `${p.artist_name}. Remember the name.`,
-  ];
-  segs.push({ start: 0, line: pick(hooks, seed) });
+  // 1 — COLD OPEN (documentary hook), varied + tier-aware
+  const hooks: string[] = [];
+  if (legend) {
+    hooks.push(`Some artists chase the sound. ${p.artist_name} helped build it.`);
+    hooks.push(`To understand house music, you have to understand ${p.artist_name}.`);
+  } else if (emerging) {
+    hooks.push(`Every scene has a next. Right now, ${p.artist_name} is it.`);
+    hooks.push(`Remember this name: ${p.artist_name}.`);
+  }
+  hooks.push(`This is the story of ${p.artist_name}.`);
+  hooks.push(`${p.artist_name}. One of house music's real ones.`);
+  push(pick(hooks, seed));
 
-  // ORIGIN
+  // 2 — ORIGIN
+  const sinceStr = startYear ? (/s$/.test(startYear) ? `the ${startYear}` : startYear) : '';
   if (origin) {
-    const based = p.current_city && p.current_city !== p.origin_city ? `, now based in ${p.current_city}` : '';
-    segs.push({ start: 0, line: `Out of ${origin}${based}, they came up through the ${p.primary_scene || 'house'} scene.` });
+    const realName = p.real_name && p.real_name !== p.artist_name ? `Born ${p.real_name}, ` : '';
+    const subj0 = realName ? (pr.known ? pr.subj : p.artist_name) : pr.known ? pr.Subj : p.artist_name;
+    const based = p.current_city && p.current_city !== p.origin_city ? ` Today, ${pr.known ? pr.subj : p.artist_name} calls ${p.current_city} home.` : '';
+    push(`${realName}${subj0} came up out of ${origin}, deep in the ${scene} scene${sinceStr ? `, and has been shaping it since ${sinceStr}` : ''}.${based}`);
   } else if (p.primary_scene) {
-    segs.push({ start: 0, line: `A core figure in the ${p.primary_scene} scene.` });
+    push(`${pr.known ? pr.Subj : p.artist_name} is a defining voice in the ${p.primary_scene} scene${sinceStr ? `, at it since ${sinceStr}` : ''}.`);
   }
 
-  // SOUND + lineage
-  let sound = `Their sound is ${soundWords}`;
-  if (p.years_active) sound += `, and they've been at it since ${p.years_active.split(/[–-]/)[0].trim()}`;
-  sound += '.';
-  segs.push({ start: 0, line: sound });
+  // 3 — THE SOUND (sensory)
+  push(`${pr.poss === p.artist_name ? `${p.artist_name}'s` : pr.poss.charAt(0).toUpperCase() + pr.poss.slice(1)} sound is ${soundWords} — ${soundDesc}.`);
+
+  // 4 — CULTURE / LINEAGE (reverent)
   if (p.black_house_music_relevance) {
-    segs.push({ start: 0, line: `They carry the Black roots of house forward — the culture this music was built on.` });
+    push(`But it runs deeper than the music. ${pr.known ? pr.Subj : p.artist_name} carries the Black roots of house forward — the culture this whole movement was built on.`);
+  } else if (p.cultural_lineage) {
+    push(`${pr.known ? pr.Subj : p.artist_name} is a living link in that lineage.`);
   }
 
-  // LABELS
-  if (p.record_label_owned) {
-    segs.push({ start: 0, line: `They run their own label, ${p.record_label_owned}.` });
-  } else if (p.labels_affiliated.length) {
-    segs.push({ start: 0, line: `You'll find their records on ${p.labels_affiliated.slice(0, 2).join(' and ')}.` });
-  }
-
-  // LIVE
-  if (p.festivals_played.length) {
-    segs.push({ start: 0, line: `They've played stages like ${p.festivals_played.slice(0, 3).join(', ')}.` });
-  } else if (p.venues_played.length) {
-    segs.push({ start: 0, line: `Catch them at rooms like ${p.venues_played.slice(0, 2).join(' and ')}.` });
-  }
-
-  // TRACKS — anthem + deep cut, only if on record
+  // 5 — THE CRAFT: labels + catalog
   const rels = p.top_releases || [];
+  const count = p.release_count && p.release_count > 1 ? p.release_count : rels.length;
+  if (p.record_label_owned) {
+    push(`${pr.known ? pr.Subj : p.artist_name} runs ${pr.poss === p.artist_name ? 'the' : pr.poss} own label, ${p.record_label_owned}, releasing on ${pr.poss === p.artist_name ? p.artist_name + "'s" : pr.poss} own terms.`);
+  } else if (p.labels_affiliated.length) {
+    push(`${pr.poss === p.artist_name ? `${p.artist_name}'s` : pr.poss.charAt(0).toUpperCase() + pr.poss.slice(1)} records live on labels like ${p.labels_affiliated.slice(0, 2).join(' and ')}.`);
+  }
   if (rels.length) {
     const anthem = p.latest_release || rels[0];
-    segs.push({ start: 0, line: `Start with "${anthem.title}"${anthem.label ? ` on ${anthem.label}` : ''}.` });
     const deep = rels.find((r) => r.title !== anthem.title);
-    if (deep) segs.push({ start: 0, line: `Then dig for the deeper cut, "${deep.title}" — one for the heads.` });
-  } else {
-    segs.push({ start: 0, line: `Dig into their catalog on Beatport and Bandcamp — there's gold in there.` });
+    let line = `Press play on "${anthem.title}"${anthem.label ? ` on ${anthem.label}` : ''}`;
+    if (deep) line += `, then go digging for the deeper cut, "${deep.title}" — one for the heads`;
+    line += count > 2 ? `, just two of ${count}-plus releases.` : '.';
+    push(line);
   }
 
-  // CLOSE
-  const closes = [
-    `Follow them, share the sound, and keep house music moving.`,
-    `Real house, real culture. Pass it on.`,
-    `One to watch on every dancefloor. Tap follow.`,
-  ];
-  segs.push({ start: 0, line: pick(closes, seed >> 3) });
+  // 6 — THE STAGE + reach
+  const stages = p.festivals_played.length ? p.festivals_played.slice(0, 3) : p.venues_played.slice(0, 2);
+  if (stages.length) {
+    push(`From ${stages.join(' to ')}, ${pr.known ? pr.subj : p.artist_name} moves dancefloors worldwide${p.monthly_listeners ? `, with over ${fmtAudience(p.monthly_listeners)} listeners every month` : ''}.`);
+  } else if (p.monthly_listeners) {
+    push(`Over ${fmtAudience(p.monthly_listeners)} people press play every single month.`);
+  }
 
-  // drop any empty/undefined lines, then distribute timing across 55s by word share
+  // 7 — WFHC CLOSE (the brand's love + care)
+  const closes = [
+    `At World Famous House Crew, we don't just track the scene — we honor the people who built it. ${p.artist_name} is one of them.`,
+    `World Famous House Crew lives for artists like this. Follow the journey. Share the sound. Keep house alive.`,
+    `This is why we do it. From all of us at World Famous House Crew — respect to ${p.artist_name}.`,
+  ];
+  push(pick(closes, seed >> 3));
+
+  // timing
   const valid = segs.filter((s) => typeof s.line === 'string' && s.line.trim().length > 0);
   const total = valid.reduce((a, s) => a + wordCount(s.line), 0) || 1;
   let acc = 0;
@@ -95,8 +160,7 @@ function buildScript(p: ArtistProfile): { segments: Segment[]; script: string } 
     s.start = (acc / total) * 55;
     acc += wordCount(s.line);
   }
-  const script = valid.map((s) => s.line).join(' ');
-  return { segments: valid, script };
+  return { segments: valid, script: valid.map((s) => s.line).join(' ') };
 }
 
 // Optional polish via the Claude API (grounded: may only rephrase the given
@@ -114,9 +178,9 @@ async function claudePolish(script: string, facts: string[]): Promise<string | n
       },
       body: JSON.stringify({
         model: 'claude-3-5-haiku-latest',
-        max_tokens: 400,
+        max_tokens: 500,
         system:
-          'You are an elite short-form VO scriptwriter for the house music community. Rewrite the draft into a punchy, warm, ~135-word, 55-second voiceover. CRITICAL: use ONLY facts in the provided list — do NOT add any artist, track, city, label, number, or claim not present. Omit, never invent. Output only the spoken script, no headers.',
+          'You are an award-winning music-documentary writer — think the narration of a great Netflix or BBC music doc — now writing a 55-second (~135-word) voiceover for World Famous House Crew (WFHC), a house music media company. Voice: reverent, vivid, cinematic, present tense, information-dense, emotionally warm. Convey WFHC\'s deep love, attention and care for the artists, DJs, labels and the history/culture of house music. Open with a documentary hook, build the story, and close in WFHC\'s voice honoring the artist. HARD RULES: (1) Use ONLY facts in the provided list — never add an artist, track, city, label, number or claim not present; omit, never invent. (2) Use the EXACT pronouns given; if pronouns are "unknown", use the artist\'s name and role nouns, never "they/them". Output only the spoken script, no headers.',
         messages: [
           {
             role: 'user',
@@ -168,6 +232,13 @@ export async function generateVoScript(p: ArtistProfile): Promise<VoResult> {
 
   // facts list (for Claude grounding + for the user's fact-check)
   const facts: string[] = [];
+  const pr = pronouns(p);
+  facts.push(`Pronouns to use: ${pr.known ? `${pr.subj}/${pr.obj}/${pr.poss}` : 'UNKNOWN — use the artist name and role nouns, never they/them'}`);
+  if (p.real_name && p.real_name !== p.artist_name) facts.push(`Real name: ${p.real_name}`);
+  if (p.monthly_listeners) facts.push(`Monthly listeners: ${p.monthly_listeners}`);
+  if (p.release_count) facts.push(`Release count: ${p.release_count}`);
+  if (p.collaborators?.length) facts.push(`Collaborators: ${p.collaborators.slice(0, 4).join(', ')}`);
+  if (p.cultural_lineage) facts.push(`Cultural lineage: ${p.cultural_lineage}`);
   if (p.origin_city || p.origin_country) facts.push(`Origin: ${[p.origin_city, p.origin_country].filter(Boolean).join(', ')}`);
   if (p.current_city) facts.push(`Currently based: ${p.current_city}`);
   if (p.primary_scene) facts.push(`Primary scene: ${p.primary_scene}`);

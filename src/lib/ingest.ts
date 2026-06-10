@@ -191,6 +191,7 @@ export async function ingestFromSource(source: string, query: string, confidence
       if (f.field === 'genres' && typeof f.value === 'string') profile.genres = normalizeGenres([...(profile.genres ?? []), ...f.value.split(/,\s*/)]);
       else if (LINK_FIELDS.has(f.field) && typeof f.value === 'string') profile[f.field] = f.value;
       else if ((f.field === 'bio_short' || f.field === 'bio_long') && typeof f.value === 'string') { if (!profile[f.field]) profile[f.field] = f.value; }
+      else if (f.field === 'gender' && typeof f.value === 'string') { profile.gender = f.value; }
       else if (f.field === 'origin_country' || f.field === 'origin_city') { if (!profile[f.field]) profile[f.field] = f.value; }
       else if (f.field.endsWith('_followers')) profile[f.field] = typeof f.value === 'number' ? f.value : Number(f.value) || null;
       applied++;
@@ -208,6 +209,8 @@ export async function ingestFromSource(source: string, query: string, confidence
       originCity: profile.origin_city ?? row.originCity,
       genresCsv: (profile.genres ?? []).join(',').toLowerCase() || row.genresCsv,
       spotifyFollowers: profile.spotify_followers ?? row.spotifyFollowers,
+      gender: profile.gender ?? row.gender,
+      isFemale: profile.gender ? profile.gender === 'female' : row.isFemale,
       confidenceScore: Math.max(row.confidenceScore, confidence),
       lastVerifiedDate: today(),
     },

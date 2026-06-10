@@ -34,6 +34,7 @@ model Artist {
   instagramFollowers Int?
   isEmerging       Boolean  @default(false)
   isFemale         Boolean  @default(false)
+  gender           String?  // 'female' | 'male' | 'non-binary' (from MusicBrainz/Wikidata)
   isLabelOwner     Boolean  @default(false)
   isLegend         Boolean  @default(false)
   hasContact       Boolean  @default(false)

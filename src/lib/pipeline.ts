@@ -62,6 +62,10 @@ function applyField(
     (profile as any)[f.field] = typeof f.value === 'number' ? f.value : Number(f.value) || null;
   } else if (f.field === 'origin_city' || f.field === 'origin_country') {
     if (!(profile as any)[f.field]) (profile as any)[f.field] = f.value;
+  } else if (f.field === 'gender' && typeof f.value === 'string') {
+    (profile as any).gender = f.value;
+  } else if ((f.field === 'bio_short' || f.field === 'bio_long') && typeof f.value === 'string') {
+    if (!(profile as any)[f.field]) (profile as any)[f.field] = f.value;
   }
   return { changed: true, conflict: false };
 }
@@ -170,6 +174,8 @@ export async function repopulate(opts: RepopulateOptions = {}): Promise<Repopula
             genresCsv: profile.genres.join(',').toLowerCase(),
             spotifyFollowers: profile.spotify_followers ?? row.spotifyFollowers,
             instagramFollowers: profile.instagram_followers ?? row.instagramFollowers,
+            gender: (profile as any).gender ?? row.gender,
+            isFemale: (profile as any).gender ? (profile as any).gender === 'female' : row.isFemale,
             confidenceScore: overall,
             lastVerifiedDate: new Date().toISOString().slice(0, 10),
           },

@@ -43,6 +43,18 @@ export const wikidata: Connector = {
     ];
     const links: Record<string, string> = { wikidata: sourceUrl };
 
+    // Gender (P21). Trans women -> female (she/her), trans men -> male, true
+    // non-binary -> they; anything else is left unknown (writer uses the name).
+    const gid = claims.P21?.[0]?.mainsnak?.datavalue?.value?.id;
+    const GMAP: Record<string, string> = {
+      Q6581097: 'male', Q2449503: 'male', // male, trans man
+      Q6581072: 'female', Q1052281: 'female', // female, trans woman
+      Q48270: 'non-binary', Q1097630: 'non-binary', // non-binary, genderqueer
+    };
+    if (gid && GMAP[gid]) {
+      fields.push({ field: 'gender', value: GMAP[gid], sourceName: 'Wikidata', sourceUrl, confidence: 94, method: 'api' });
+    }
+
     for (const [prop, cfg] of Object.entries(PROPS)) {
       const v = claims[prop]?.[0]?.mainsnak?.datavalue?.value;
       if (typeof v === 'string' && v) {
