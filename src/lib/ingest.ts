@@ -229,6 +229,86 @@ export async function ingestFromSource(source: string, query: string, confidence
   };
 }
 
+export interface CustomArtistInput {
+  name: string;
+  realName?: string;
+  country?: string;
+  city?: string;
+  currentCity?: string;
+  currentCountry?: string;
+  scene?: string;
+  genres?: string[];
+  subgenres?: string[];
+  bioShort?: string;
+  gender?: 'male' | 'female' | 'non-binary';
+  recordLabelOwned?: string;
+  labelsAffiliated?: string[];
+  links?: Partial<Record<'instagram' | 'spotify' | 'soundcloud' | 'bandcamp' | 'beatport' | 'traxsource' | 'apple_music' | 'youtube' | 'website' | 'tiktok' | 'discogs', string>>;
+  flags?: Partial<{ isLabelOwner: boolean; isEmerging: boolean; blackLineage: boolean }>;
+  confidence?: number;
+  sourceName?: string;
+}
+
+// Create OR update an artist with first-party / curated details (full control of
+// fields + links). Used for adding artists manually with exact data.
+export async function upsertCustomArtist(input: CustomArtistInput): Promise<{ slug: string; created: boolean }> {
+  const slug = slugify(input.name);
+  if (!slug) throw new Error('invalid name');
+  const conf = input.confidence ?? 75;
+  const genres = normalizeGenres(input.genres);
+  const subgenres = normalizeGenres(input.subgenres);
+  const existing = await prisma.artist.findUnique({ where: { slug } });
+  const profile: any = existing ? serializeArtist(existing) : { artist_name: input.name, field_sources: {}, source_urls: [] };
+  const src = input.sourceName || 'Provided / first-party (World Famous House Crew)';
+
+  profile.artist_name = input.name;
+  if (input.realName) profile.real_name = input.realName;
+  if (input.city) profile.origin_city = input.city;
+  if (input.country) profile.origin_country = input.country;
+  if (input.currentCity) profile.current_city = input.currentCity;
+  if (input.currentCountry) profile.current_country = input.currentCountry;
+  if (input.scene) profile.primary_scene = input.scene;
+  if (genres.length) profile.genres = genres;
+  if (subgenres.length) profile.specific_house_subgenres = subgenres;
+  if (input.bioShort) profile.bio_short = input.bioShort;
+  if (input.gender) profile.gender = input.gender;
+  if (input.recordLabelOwned) profile.record_label_owned = input.recordLabelOwned;
+  if (input.labelsAffiliated?.length) profile.labels_affiliated = input.labelsAffiliated;
+  for (const [k, v] of Object.entries(input.links || {})) {
+    if (!v) continue;
+    profile[k] = v;
+    profile.field_sources[k] = { value: v, source_name: src, last_verified_date: today(), confidence_score: 90 };
+    if (!profile.source_urls.includes(v)) profile.source_urls.push(v);
+  }
+  profile.confidence_score = Math.max(profile.confidence_score ?? 0, conf);
+  profile.last_verified_date = today();
+
+  const data = {
+    artistName: input.name,
+    realName: input.realName ?? existing?.realName ?? null,
+    originCity: input.city ?? existing?.originCity ?? null,
+    originCountry: input.country ?? existing?.originCountry ?? null,
+    currentCity: input.currentCity ?? existing?.currentCity ?? null,
+    currentCountry: input.currentCountry ?? existing?.currentCountry ?? null,
+    primaryScene: input.scene ?? existing?.primaryScene ?? null,
+    genresCsv: genres.length ? genres.join(',').toLowerCase() : existing?.genresCsv ?? '',
+    subgenresCsv: subgenres.length ? subgenres.join(',').toLowerCase() : existing?.subgenresCsv ?? '',
+    gender: input.gender ?? existing?.gender ?? null,
+    isFemale: input.gender ? input.gender === 'female' : existing?.isFemale ?? false,
+    isLabelOwner: input.flags?.isLabelOwner ?? existing?.isLabelOwner ?? false,
+    isEmerging: input.flags?.isEmerging ?? existing?.isEmerging ?? false,
+    blackLineage: input.flags?.blackLineage ?? existing?.blackLineage ?? false,
+    confidenceScore: profile.confidence_score,
+    lastVerifiedDate: today(),
+    profile: JSON.stringify(profile),
+  };
+
+  if (existing) await prisma.artist.update({ where: { slug }, data });
+  else await prisma.artist.create({ data: { slug, ...data } });
+  await prisma.changeLog.create({ data: { entityType: 'artist', entitySlug: slug, changeType: existing ? 'update' : 'create', source: src, newValue: `Custom ${existing ? 'update' : 'add'}: ${input.name}` } });
+  return { slug, created: !existing };
+}
+
 // Grow the database from the curated roster up to a target artist count.
 export async function importRoster(target: number): Promise<{ added: number; total: number; rosterRemaining: number; exhausted: boolean }> {
   const { ROSTER } = await import('../data/roster');
