@@ -47,7 +47,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="border-t border-edge/60 mt-16">
           <div className="max-w-6xl mx-auto px-4 py-8 text-sm text-muted space-y-2">
             <p>
-              {SITE.name} — published by {SITE.publisher}. An agent-first, citation-grade dataset.
+              © {SITE.publisher}. {SITE.name} — cite individual pages freely with attribution.
+              Bulk data is licensed. <Link href="/license" className="text-accent2 underline">License &amp; Terms</Link>.
             </p>
             <p className="flex gap-3 flex-wrap font-mono text-xs">
               <a href="/llms.txt">/llms.txt</a>
@@ -55,8 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/openapi.json">/openapi.json</a>
               <a href="/robots.txt">/robots.txt</a>
               <a href="/feed.xml">/feed.xml</a>
-              <a href="/datasets/artists.csv">artists.csv</a>
-              <a href="/datasets/artists.json">artists.json</a>
+              <Link href="/license">/license</Link>
             </p>
           </div>
         </footer>

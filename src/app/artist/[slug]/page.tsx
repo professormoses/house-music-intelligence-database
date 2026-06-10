@@ -1,7 +1,10 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { cookies } from 'next/headers';
 import { getArtist } from '@/lib/queries';
+import { redactContacts } from '@/lib/serialize';
+import { checkTokenValue, ADMIN_COOKIE } from '@/lib/auth';
 import { abs, prettyDate } from '@/lib/site';
 import { prisma } from '@/lib/db';
 import { edgesForSlug } from '@/lib/graph';
@@ -37,8 +40,11 @@ const ext = (url?: string | null, label?: string) =>
   ) : null;
 
 export default async function ArtistPage({ params }: { params: { slug: string } }) {
-  const a = await getArtist(params.slug);
+  let a = await getArtist(params.slug);
   if (!a) notFound();
+  // Contact emails are private — only admins (signed in) see them on the page.
+  const isAdmin = checkTokenValue(cookies().get(ADMIN_COOKIE)?.value);
+  if (!isAdmin) a = redactContacts(a);
 
   const releases = await prisma.artistRelease.findMany({
     where: { artist: { slug: params.slug } },

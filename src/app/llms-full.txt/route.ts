@@ -4,12 +4,19 @@ import { artistToMarkdown } from '@/lib/format';
 import { renderDoc } from '@/lib/content';
 import { allTopics, topicToMarkdown } from '@/lib/topics';
 import { edgesForSlug } from '@/lib/graph';
+import { isDataAuthorized } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
-// The entire corpus inlined as Markdown — a single fetch that gives an agent
-// the full database context. For very large datasets, paginate or shard this.
-export async function GET() {
+// The entire corpus inlined as Markdown — a bulk dump, so it's gated behind the
+// data API key. Individual pages and /llms.txt stay public for citation.
+export async function GET(req: Request) {
+  if (!isDataAuthorized(req)) {
+    return new Response(
+      `# Licensed bulk resource\n\nThe full corpus is available to licensed partners. Individual pages remain public — start at ${SITE.url}/llms.txt and crawl per-artist Markdown (/artist/{slug}.md). Request a data API key: ${SITE.url}/license\n`,
+      { status: 401, headers: { 'content-type': 'text/markdown; charset=utf-8' } },
+    );
+  }
   const parts: string[] = [];
   parts.push(`# ${SITE.name} — Full Corpus\n\n> ${SITE.tagline}\n\nPublished by ${SITE.publisher}. Canonical: ${SITE.url}\n`);
 

@@ -65,10 +65,12 @@ data — please use the suggested citation on each page.
 - List + filter: ${abs('/api/artists?genre=Afro%20House&country=South%20Africa')}
 - Changes since a date: ${abs('/api/changed-since?date=2026-01-01')}
 
-## Citation
+## Citation & license
 
 Cite as: ${SITE.name}, published by ${SITE.publisher}. Each page provides a precise suggested
-citation and field-level provenance.
+citation and field-level provenance. Individual pages and per-artist JSON/Markdown are free to read
+and cite with attribution. **Bulk dumps (full CSV/JSON/NDJSON and llms-full.txt) and contact emails
+are licensed and require a data API key** — see ${abs('/license')}. Please do not scrape at scale.
 
 ## Policy
 

@@ -4,7 +4,7 @@ import { serializeArtist } from './serialize';
 import { abs, SITE, prettyDate, today } from './site';
 import { HOUSE_GENRES, genreSlug } from './genres';
 import { allTopics, topicsByType, TYPE_LABELS } from './topics';
-import { ABOUT_MD, METHODOLOGY_MD, CITE_MD } from './authority';
+import { ABOUT_MD, METHODOLOGY_MD, CITE_MD, LICENSE_MD } from './authority';
 import type { ArtistProfile } from './types';
 
 function header(title: string, description: string, path: string): string {
@@ -232,6 +232,7 @@ export const DOCS: Record<string, () => Promise<string>> = {
   'about': async () => ABOUT_MD,
   'methodology': async () => METHODOLOGY_MD,
   'cite': async () => CITE_MD,
+  'license': async () => LICENSE_MD,
 
   'knowledge': async () => {
     const path = '/knowledge.md';

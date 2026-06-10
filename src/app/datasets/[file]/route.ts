@@ -1,12 +1,31 @@
 import { prisma } from '@/lib/db';
 import { allArtistProfiles } from '@/lib/queries';
 import { toCSV, toNDJSON } from '@/lib/format';
-import { abs } from '@/lib/site';
+import { abs, SITE } from '@/lib/site';
 import { buildGraph, buildJsonLdGraph } from '@/lib/graph';
 import { allTopics } from '@/lib/topics';
+import { isDataAuthorized, watermarkFor } from '@/lib/auth';
 import type { ArtistProfile } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
+
+// These stay public; everything else is a bulk dump and needs the data API key.
+const PUBLIC_FILES = new Set(['schema.md', 'license.txt']);
+const LICENSE_NOTE = `© ${SITE.publisher}. Licensed bulk data — no resale/redistribution without permission. Watermarked & traceable.`;
+const LICENSE_TXT = `${SITE.name} — Data License & Terms of Use
+Copyright © ${SITE.publisher}. All rights reserved.
+
+You MAY: view pages, quote individual facts with attribution to "${SITE.name}",
+and cite per-page URLs. AI agents may read and cite individual pages.
+
+You MAY NOT, without a written license: bulk-download, scrape at scale, resell,
+redistribute, or build a competing dataset/product from this data. The selection,
+arrangement, scoring, descriptions, cultural articles and generated scripts are
+original works protected by copyright. Bulk data is gated, watermarked, and
+traceable to the API key used.
+
+Request a data license / API key: ${SITE.url}/license
+`;
 
 function flatArtist(a: ArtistProfile) {
   return {
@@ -58,12 +77,31 @@ function file(body: string, type: string, name: string) {
   });
 }
 
-export async function GET(_req: Request, { params }: { params: { file: string } }) {
+export async function GET(req: Request, { params }: { params: { file: string } }) {
   const f = params.file;
 
-  if (f === 'artists.csv') return file(toCSV((await allArtistProfiles()).map(flatArtist)), 'text/csv; charset=utf-8', f);
-  if (f === 'artists.json') return file(JSON.stringify(await allArtistProfiles(), null, 2), 'application/json', f);
-  if (f === 'artists.ndjson') return file(toNDJSON(await allArtistProfiles()), 'application/x-ndjson', f);
+  if (f === 'license.txt') return file(LICENSE_TXT, 'text/plain; charset=utf-8', f);
+
+  // Gate all bulk dumps behind the data API key (admins included).
+  if (!PUBLIC_FILES.has(f) && !isDataAuthorized(req)) {
+    return Response.json(
+      {
+        error: 'data_api_key_required',
+        message:
+          'Bulk dataset downloads are licensed. Individual pages and per-artist JSON stay public. Request a data API key, then pass it as ?key=... or the x-api-key header.',
+        license: abs('/license'),
+        public_alternatives: [abs('/api/artists/{slug}.json'), abs('/artist/{slug}.md'), abs('/llms.txt')],
+      },
+      { status: 401, headers: { 'access-control-allow-origin': '*' } },
+    );
+  }
+
+  const wm = watermarkFor(req);
+  const stamp = <T extends object>(rows: T[]) => rows.map((r) => ({ ...r, _watermark: wm, _license: LICENSE_NOTE }));
+
+  if (f === 'artists.csv') return file(toCSV(stamp((await allArtistProfiles()).map(flatArtist))), 'text/csv; charset=utf-8', f);
+  if (f === 'artists.json') return file(JSON.stringify(stamp(await allArtistProfiles()), null, 2), 'application/json', f);
+  if (f === 'artists.ndjson') return file(toNDJSON(stamp(await allArtistProfiles())), 'application/x-ndjson', f);
 
   if (f === 'labels.csv' || f === 'labels.json') {
     const labels = (await prisma.label.findMany()).map((l) => ({

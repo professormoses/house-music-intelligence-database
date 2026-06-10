@@ -76,6 +76,24 @@ export function serializeArtist(row: Artist): ArtistProfile {
   return merged;
 }
 
+const CONTACT_FIELDS = ['manager_email', 'booking_email', 'press_email', 'general_contact_email'] as const;
+
+// Remove contact emails (a "crown-jewel" private field) for public responses.
+// Authorized (admin / API-key) callers get the full record.
+export function redactContacts(p: ArtistProfile): ArtistProfile {
+  const out: ArtistProfile = { ...p, field_sources: { ...p.field_sources } };
+  let had = false;
+  for (const f of CONTACT_FIELDS) {
+    if ((out as any)[f]) had = true;
+    (out as any)[f] = null;
+    delete out.field_sources[f];
+  }
+  (out as any).contact_emails_note = had
+    ? 'Contact emails are available to licensed partners via the data API.'
+    : undefined;
+  return out;
+}
+
 export interface ArtistSummary {
   slug: string;
   artist_name: string;

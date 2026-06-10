@@ -67,6 +67,36 @@ Found an error or have a better source? Corrections are welcome — every record
 [change log](${abs('/changelog.md')}).
 `;
 
+export const LICENSE_MD = `# Data License & Terms of Use
+
+Copyright © ${SITE.publisher}. ${SITE.name} is an original, curated work.
+
+## What's free
+- **View** any page. **Quote** individual facts with attribution to **${SITE.name}**.
+- **Cite** per-page URLs (every page has a suggested citation).
+- **AI agents** may read and cite individual pages and per-artist Markdown.
+
+## What needs a license
+Without written permission you may **not**: bulk-download, scrape at scale, resell,
+redistribute, or build a competing dataset or product from this data.
+
+The facts themselves are public, but the **selection, arrangement, scoring,
+descriptions, cultural articles, relationship graph, and generated scripts are
+original works** protected by copyright. The compilation is ${SITE.publisher} property.
+
+## Bulk data is licensed
+Full CSV / JSON / NDJSON exports and the full corpus are gated behind a **data API
+key**, **watermarked**, and **traceable** to the key used to download them. Contact
+emails are private and only available to licensed partners.
+
+## Request a license / API key
+Email **${'hello@worldfamoushousecrew.com'}** (or your preferred contact) to license
+the dataset or get an API key for bulk access. We support fans, journalists, and
+researchers with free per-page citation — commercial bulk reuse requires a license.
+
+_This page is a plain-language summary, not a substitute for a signed agreement._
+`;
+
 export const CITE_MD = `# How to cite the House Music Intelligence Database
 
 Every page provides a ready-to-use citation. General forms:

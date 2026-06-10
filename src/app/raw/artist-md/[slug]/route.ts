@@ -1,14 +1,17 @@
 import { getArtist } from '@/lib/queries';
+import { redactContacts } from '@/lib/serialize';
+import { isDataAuthorized } from '@/lib/auth';
 import { artistToMarkdown } from '@/lib/format';
 import { edgesForSlug } from '@/lib/graph';
 import { abs } from '@/lib/site';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(_req: Request, { params }: { params: { slug: string } }) {
+export async function GET(req: Request, { params }: { params: { slug: string } }) {
   const slug = params.slug.replace(/\.md$/, '');
-  const a = await getArtist(slug);
+  let a = await getArtist(slug);
   if (!a) return new Response('# Not found\n', { status: 404, headers: { 'content-type': 'text/markdown; charset=utf-8' } });
+  if (!isDataAuthorized(req)) a = redactContacts(a);
 
   let md = artistToMarkdown(a);
   const edges = await edgesForSlug(slug);
