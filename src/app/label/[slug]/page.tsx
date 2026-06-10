@@ -49,7 +49,11 @@ export default async function LabelPage({ params }: { params: { slug: string } }
       <header className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <h1 className="text-3xl font-bold">{l.labelName}</h1>
-          <p className="text-muted">{[l.city, l.country].filter(Boolean).join(', ')}</p>
+          <p className="text-muted">
+            {l.city ? <Link href={`/?city=${encodeURIComponent(l.city)}`} className="hover:text-accent">{l.city}</Link> : ''}
+            {l.city && l.country ? ', ' : ''}
+            {l.country ? <Link href={`/?country=${encodeURIComponent(l.country)}`} className="hover:text-accent hover:underline">{l.country}</Link> : ''}
+          </p>
         </div>
         <div className="font-mono text-xs space-x-3 pt-2">
           <a href={`/label/${l.slug}.md`} className="px-2 py-1 border border-edge rounded">.md</a>
@@ -59,7 +63,15 @@ export default async function LabelPage({ params }: { params: { slug: string } }
 
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-panel/40 border border-edge rounded-xl p-4 space-y-2 text-sm">
-          <p><span className="text-muted">Genres:</span> {l.genresCsv.split(',').filter(Boolean).join(', ')}</p>
+          <p>
+            <span className="text-muted">Genres:</span>{' '}
+            {l.genresCsv.split(',').filter(Boolean).map((g, i, arr) => (
+              <span key={g}>
+                <Link href={`/?genre=${encodeURIComponent(g)}`} className="text-accent hover:underline">{g.replace(/\b\w/g, (c) => c.toUpperCase())}</Link>
+                {i < arr.length - 1 ? ', ' : ''}
+              </span>
+            ))}
+          </p>
           <p><span className="text-muted">Website:</span> {l.website ? <a className="text-accent underline" href={l.website}>{l.website}</a> : '—'}</p>
           <p><span className="text-muted">Demo email:</span> {l.demoEmail ?? '—'}</p>
           <p><span className="text-muted">Contact:</span> {l.contactEmail ?? '—'}</p>

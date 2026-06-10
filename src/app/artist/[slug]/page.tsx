@@ -52,6 +52,31 @@ export default async function ArtistPage({ params }: { params: { slug: string } 
   });
   const edges = await edgesForSlug(params.slug);
 
+  // Resolve the artist's labels to label-page slugs so they link to the roster.
+  const labelNames = [a.record_label_owned, ...a.labels_affiliated].filter(Boolean) as string[];
+  const labelRows = labelNames.length
+    ? await prisma.label.findMany({ where: { labelName: { in: labelNames } }, select: { slug: true, labelName: true } })
+    : [];
+  const labelSlugByName = new Map(labelRows.map((l) => [l.labelName, l.slug]));
+  const LabelLink = ({ name }: { name: string }) => {
+    const s = labelSlugByName.get(name);
+    return s ? (
+      <Link href={`/label/${s}`} className="text-accent hover:underline">{name}</Link>
+    ) : (
+      <Link href={`/?label=${encodeURIComponent(name)}`} className="hover:text-accent">{name}</Link>
+    );
+  };
+  const GenreLinks = ({ list }: { list: string[] }) => (
+    <>
+      {list.map((g, i) => (
+        <span key={g}>
+          <Link href={`/?genre=${encodeURIComponent(g)}`} className="hover:text-accent hover:underline">{g}</Link>
+          {i < list.length - 1 ? ', ' : ''}
+        </span>
+      ))}
+    </>
+  );
+
   const sameAs = [
     a.website, a.instagram, a.spotify, a.soundcloud, a.beatport, a.discogs,
     a.musicbrainz, a.resident_advisor, a.wikipedia, a.wikidata, a.bandcamp, a.youtube,
@@ -189,9 +214,9 @@ export default async function ArtistPage({ params }: { params: { slug: string } 
             <Row label="Based in">{[a.current_city, a.current_country].filter(Boolean).join(', ')}</Row>
             <Row label="Years active">{a.years_active}</Row>
             <Row label="Scene">{a.primary_scene}</Row>
-            <Row label="Subgenres">{a.specific_house_subgenres.join(', ')}</Row>
-            <Row label="Owns label">{a.record_label_owned}</Row>
-            <Row label="Labels">{a.labels_affiliated.join(', ')}</Row>
+            <Row label="Subgenres">{a.specific_house_subgenres.length ? <GenreLinks list={a.specific_house_subgenres} /> : null}</Row>
+            <Row label="Owns label">{a.record_label_owned ? <LabelLink name={a.record_label_owned} /> : null}</Row>
+            <Row label="Labels">{a.labels_affiliated.length ? a.labels_affiliated.map((n, i) => <span key={n}><LabelLink name={n} />{i < a.labels_affiliated.length - 1 ? ', ' : ''}</span>) : null}</Row>
             <Row label="Monthly listeners">{a.monthly_listeners?.toLocaleString()}</Row>
             <Row label="Confidence">{a.confidence_score}/100</Row>
             <Row label="Last verified">{prettyDate(a.last_verified_date)}</Row>

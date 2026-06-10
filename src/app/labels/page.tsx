@@ -20,8 +20,17 @@ export default async function LabelsPage() {
             {labels.map((l) => (
               <tr key={l.id} className="border-b border-edge/40 hover:bg-panel/40">
                 <td className="p-3 font-medium"><Link href={`/label/${l.slug}`} className="hover:text-accent">{l.labelName}</Link></td>
-                <td className="p-3 text-muted">{l.country}</td>
-                <td className="p-3 text-muted">{l.genresCsv.split(',').filter(Boolean).join(', ')}</td>
+                <td className="p-3 text-muted">
+                  {l.country ? <Link href={`/?country=${encodeURIComponent(l.country)}`} className="hover:text-accent hover:underline">{l.country}</Link> : ''}
+                </td>
+                <td className="p-3 text-muted">
+                  {l.genresCsv.split(',').filter(Boolean).map((g, i, arr) => (
+                    <span key={g}>
+                      <Link href={`/?genre=${encodeURIComponent(g)}`} className="hover:text-accent hover:underline">{g.replace(/\b\w/g, (c) => c.toUpperCase())}</Link>
+                      {i < arr.length - 1 ? ', ' : ''}
+                    </span>
+                  ))}
+                </td>
                 <td className="p-3 font-mono text-xs space-x-2"><a href={`/label/${l.slug}.md`}>md</a><a href={`/api/labels/${l.slug}.json`}>json</a></td>
               </tr>
             ))}

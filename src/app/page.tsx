@@ -23,6 +23,7 @@ export default async function HomePage({
     country: searchParams.country,
     city: searchParams.city,
     scene: searchParams.scene,
+    label: searchParams.label,
     minListeners: num(searchParams.minListeners),
     hasContact: searchParams.hasContact === '1',
     hasUpcoming: searchParams.hasUpcoming === '1',
