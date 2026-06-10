@@ -225,7 +225,16 @@ async function main() {
   for (const l of SEED_LABELS) {
     await prisma.label.upsert({
       where: { slug: l.slug },
-      update: {},
+      // Refresh roster + genres + sources on re-seed (idempotent).
+      update: {
+        labelName: l.labelName,
+        genresCsv: normalizeGenres(l.genres).join(',').toLowerCase(),
+        artistRoster: JSON.stringify(l.artistRoster ?? []),
+        website: (l as any).website ?? null,
+        country: l.country ?? null,
+        sourceUrls: JSON.stringify(l.sourceUrls ?? []),
+        confidenceScore: l.confidenceScore ?? 50,
+      },
       create: {
         slug: l.slug,
         labelName: l.labelName,
