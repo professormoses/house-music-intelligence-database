@@ -60,9 +60,10 @@ export default function BuildPanel({ token, sources }: { token: string; sources:
       <div className="bg-panel/40 border border-edge rounded-xl p-4 space-y-3">
         <h3 className="font-semibold">Search a source → add to database</h3>
         <p className="text-xs text-muted">
-          Pick a source, type an artist (or chart/term), and add it. If that source has a configured
-          connector (e.g. MusicBrainz, or Spotify/Discogs with API keys) it auto-enriches with
-          provenance; otherwise it's added with a source link awaiting enrichment.
+          Pick a source, type an artist, and add it. It stores that source's link and auto-enriches
+          from compliant sources (MusicBrainz, Wikidata, Wikipedia — links, bio, country; + Spotify/Discogs
+          with API keys). Sites with no API / anti-bot (1001Tracklists, Beatport, RA, Instagram) aren't
+          scraped — their link is saved and the artist is enriched from the compliant chain.
         </p>
         <div className="flex gap-2 flex-wrap">
           <select value={source} onChange={(e) => setSource(e.target.value)} className="bg-ink border border-edge rounded-lg px-3 py-2 text-sm min-w-[180px]">

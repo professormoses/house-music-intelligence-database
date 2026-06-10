@@ -2,7 +2,8 @@ import { prisma } from './db';
 import { normalizeGenres } from './genres';
 import { today } from './site';
 import { serializeArtist } from './serialize';
-import { CONNECTORS } from '../connectors/registry';
+import { CONNECTORS, enrichmentConnectors } from '../connectors/registry';
+import type { Connector } from '../connectors/base';
 import type { FieldSource } from './types';
 
 export function slugify(name: string): string {
@@ -148,57 +149,81 @@ export interface SourceIngestResult {
 // Add/enrich one artist from one specific source — the engine behind the
 // "search a site → database grows" tool. Uses that source's connector when
 // one is configured + compliant; otherwise records a provenance stub.
+const LINK_FIELDS = new Set(['website', 'instagram', 'tiktok', 'spotify', 'apple_music', 'soundcloud', 'beatport', 'traxsource', 'discogs', 'musicbrainz', 'youtube', 'bandcamp', 'resident_advisor', 'wikidata', 'wikipedia']);
+
+// Sources that have no compliant automated access (no API + anti-bot / ToS).
+// We store a provenance link to them but never scrape them.
+const NO_SCRAPE = new Set(['1001tracklists', 'beatport', 'traxsource', 'resident advisor', 'instagram', 'tiktok', 'dice', 'boiler room', 'mixmag', 'dj mag', 'shazam charts', 'soundcloud', 'bandcamp', 'apple music', 'youtube music', 'linktree', 'beacons', 'hypeddit', 'toneden', 'facebook event pages', 'allmusic']);
+
 export async function ingestFromSource(source: string, query: string, confidence = 42): Promise<SourceIngestResult> {
   const url = searchUrlFor(source, query);
   const stub = await ingestArtist({ name: query, sourceName: source, sourceUrl: url, confidence });
   const slug = stub.slug;
   if (!slug) return { slug: '', created: false, enriched: false, fieldsApplied: 0, note: 'invalid name' };
 
-  const connector = CONNECTORS.find((c) => c.name.toLowerCase() === source.toLowerCase());
-  if (!connector || !connector.enrich)
-    return { slug, created: stub.created, enriched: false, fieldsApplied: 0, note: `Added with provenance to ${source}. No automated connector for this source yet — enrich it via an API-backed source (e.g. MusicBrainz/Spotify/Discogs).` };
-  if (!connector.isConfigured())
-    return { slug, created: stub.created, enriched: false, fieldsApplied: 0, note: `Added. ${source} connector needs credentials in .env to auto-enrich.` };
-
-  let result;
-  try {
-    result = await connector.enrich({ name: query });
-  } catch (e: any) {
-    return { slug, created: stub.created, enriched: false, fieldsApplied: 0, note: `Added. ${source} fetch failed (needs network access): ${String(e?.message ?? e)}` };
-  }
-  if (!result) return { slug, created: stub.created, enriched: false, fieldsApplied: 0, note: `Added. No match found on ${source}.` };
+  // Whichever source the user picks, store its link, then enrich via the
+  // COMPLIANT chain (MusicBrainz, Wikidata, Wikipedia + any keyed API sources).
+  const chain: Connector[] = [];
+  const matched = CONNECTORS.find((c) => c.name.toLowerCase() === source.toLowerCase());
+  if (matched?.enrich && matched.isConfigured() && matched.compliant()) chain.push(matched);
+  for (const c of enrichmentConnectors()) if (!chain.includes(c)) chain.push(c);
 
   const row = await prisma.artist.findUnique({ where: { slug } });
   if (!row) return { slug, created: stub.created, enriched: false, fieldsApplied: 0, note: 'artist vanished' };
   const profile: any = serializeArtist(row);
-  const linkFields = new Set(['website', 'instagram', 'tiktok', 'spotify', 'apple_music', 'soundcloud', 'beatport', 'traxsource', 'discogs', 'musicbrainz', 'youtube', 'bandcamp', 'resident_advisor', 'wikidata']);
   let applied = 0;
-  for (const f of result.fields) {
-    const existing = profile.field_sources[f.field];
-    if (existing && (existing.confidence_score ?? 0) >= f.confidence) continue;
-    profile.field_sources[f.field] = { value: f.value, source_name: f.sourceName, source_url: f.sourceUrl, last_verified_date: today(), confidence_score: f.confidence };
-    if (f.sourceUrl && !profile.source_urls.includes(f.sourceUrl)) profile.source_urls.push(f.sourceUrl);
-    if (f.field === 'genres' && typeof f.value === 'string') profile.genres = normalizeGenres([...(profile.genres ?? []), ...f.value.split(/,\s*/)]);
-    else if (linkFields.has(f.field) && typeof f.value === 'string') profile[f.field] = f.value;
-    else if (f.field === 'origin_country' || f.field === 'origin_city') { if (!profile[f.field]) profile[f.field] = f.value; }
-    else if (f.field.endsWith('_followers')) profile[f.field] = typeof f.value === 'number' ? f.value : Number(f.value) || null;
-    applied++;
+  const used: string[] = [];
+
+  for (const connector of chain) {
+    let result;
+    try {
+      result = await connector.enrich!({ name: query });
+    } catch {
+      continue;
+    }
+    if (!result) continue;
+    let any = false;
+    for (const f of result.fields) {
+      const existing = profile.field_sources[f.field];
+      if (existing && (existing.confidence_score ?? 0) >= f.confidence) continue;
+      profile.field_sources[f.field] = { value: f.value, source_name: f.sourceName, source_url: f.sourceUrl, last_verified_date: today(), confidence_score: f.confidence };
+      if (f.sourceUrl && !profile.source_urls.includes(f.sourceUrl)) profile.source_urls.push(f.sourceUrl);
+      if (f.field === 'genres' && typeof f.value === 'string') profile.genres = normalizeGenres([...(profile.genres ?? []), ...f.value.split(/,\s*/)]);
+      else if (LINK_FIELDS.has(f.field) && typeof f.value === 'string') profile[f.field] = f.value;
+      else if ((f.field === 'bio_short' || f.field === 'bio_long') && typeof f.value === 'string') { if (!profile[f.field]) profile[f.field] = f.value; }
+      else if (f.field === 'origin_country' || f.field === 'origin_city') { if (!profile[f.field]) profile[f.field] = f.value; }
+      else if (f.field.endsWith('_followers')) profile[f.field] = typeof f.value === 'number' ? f.value : Number(f.value) || null;
+      applied++;
+      any = true;
+    }
+    for (const [k, v] of Object.entries(result.links ?? {})) if (LINK_FIELDS.has(k) && !profile[k]) { profile[k] = v; applied++; any = true; }
+    if (any) used.push(connector.name);
   }
-  for (const [k, v] of Object.entries(result.links ?? {})) if (linkFields.has(k) && !profile[k]) { profile[k] = v; applied++; }
 
   await prisma.artist.update({
     where: { slug },
     data: {
       profile: JSON.stringify(profile),
       originCountry: profile.origin_country ?? row.originCountry,
+      originCity: profile.origin_city ?? row.originCity,
       genresCsv: (profile.genres ?? []).join(',').toLowerCase() || row.genresCsv,
       spotifyFollowers: profile.spotify_followers ?? row.spotifyFollowers,
       confidenceScore: Math.max(row.confidenceScore, confidence),
       lastVerifiedDate: today(),
     },
   });
-  await prisma.changeLog.create({ data: { entityType: 'artist', entityId: row.id, entitySlug: slug, changeType: 'refresh', source, newValue: `Enriched from ${source} (${applied} fields)` } });
-  return { slug, created: stub.created, enriched: true, fieldsApplied: applied, note: `Enriched from ${source}.` };
+  await prisma.changeLog.create({ data: { entityType: 'artist', entityId: row.id, entitySlug: slug, changeType: 'refresh', source, newValue: `Enriched via ${used.join(', ') || 'no source'} (${applied} fields)` } });
+
+  const scrapeNote = NO_SCRAPE.has(source.toLowerCase())
+    ? ` Note: ${source} has no compliant API/anti-bot — its link is stored, but data was pulled from ${used.join(', ') || 'compliant sources'}.`
+    : '';
+  return {
+    slug,
+    created: stub.created,
+    enriched: applied > 0,
+    fieldsApplied: applied,
+    note: applied > 0 ? `Added & enriched ${query} via ${used.join(', ')} (${applied} fields).${scrapeNote}` : `Added ${query}. No compliant source had a match to enrich from.${scrapeNote}`,
+  };
 }
 
 // Grow the database from the curated roster up to a target artist count.

@@ -1,5 +1,7 @@
 import type { Connector } from './base';
 import { musicbrainz } from './musicbrainz';
+import { wikidata } from './wikidata';
+import { wikipedia } from './wikipedia';
 import { discogs } from './discogs';
 import { spotify } from './spotify';
 
@@ -8,6 +10,8 @@ import { spotify } from './spotify';
 // the pipeline needs to change. This is the single extension point.
 export const CONNECTORS: Connector[] = [
   musicbrainz, // works out of the box (no key)
+  wikidata, // works out of the box (no key) — official links + socials
+  wikipedia, // works out of the box (no key) — bio
   spotify, // needs SPOTIFY_CLIENT_ID/SECRET
   discogs, // needs DISCOGS_TOKEN
   // --- Scaffolds to add next (each its own module):
