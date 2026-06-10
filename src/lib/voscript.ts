@@ -9,8 +9,8 @@ function hash(s: string): number {
   for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
   return h;
 }
-const pick = <T>(arr: T[], seed: number): T => arr[seed % arr.length];
-const wordCount = (s: string) => s.split(/\s+/).filter(Boolean).length;
+const pick = <T>(arr: T[], seed: number): T => arr[((Math.trunc(seed) % arr.length) + arr.length) % arr.length];
+const wordCount = (s?: string) => (s || '').split(/\s+/).filter(Boolean).length;
 const mmss = (sec: number) => `0:${String(Math.round(sec)).padStart(2, '0')}`;
 
 interface Segment {
@@ -87,15 +87,16 @@ function buildScript(p: ArtistProfile): { segments: Segment[]; script: string } 
   ];
   segs.push({ start: 0, line: pick(closes, seed >> 3) });
 
-  // distribute timing across 55s by word share
-  const total = segs.reduce((a, s) => a + wordCount(s.line), 0) || 1;
+  // drop any empty/undefined lines, then distribute timing across 55s by word share
+  const valid = segs.filter((s) => typeof s.line === 'string' && s.line.trim().length > 0);
+  const total = valid.reduce((a, s) => a + wordCount(s.line), 0) || 1;
   let acc = 0;
-  for (const s of segs) {
+  for (const s of valid) {
     s.start = (acc / total) * 55;
     acc += wordCount(s.line);
   }
-  const script = segs.map((s) => s.line).join(' ');
-  return { segments: segs, script };
+  const script = valid.map((s) => s.line).join(' ');
+  return { segments: valid, script };
 }
 
 // Optional polish via the Claude API (grounded: may only rephrase the given
