@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { listArtists, type ArtistFilter } from '@/lib/queries';
-import { HOUSE_GENRES } from '@/lib/genres';
+import { HOUSE_GENRES, GENRE_HISTORY_TOPIC } from '@/lib/genres';
 import { SITE, abs } from '@/lib/site';
 import { prisma } from '@/lib/db';
 import FontSizeControl from '@/components/FontSizeControl';
+import LandingExperience from '@/components/landing/LandingExperience';
+import { SCENES } from '@/components/landing/scenes';
 
 export const dynamic = 'force-dynamic';
 
@@ -12,11 +14,55 @@ function num(v?: string) {
   return isNaN(n) ? undefined : n;
 }
 
+// First-time visitors (no search/filter params) get the immersive landing page.
+// Any filter link (/?genre=, /?city=, /?q=, /?browse=1 …) renders the directory.
+async function LandingView() {
+  const [artistCount, labelCount, edges, eventCount, sourceCount, topics, grouped, feat] = await Promise.all([
+    prisma.artist.count(),
+    prisma.label.count(),
+    prisma.relationship.count(),
+    prisma.event.count(),
+    prisma.source.count(),
+    prisma.topic.findMany({ select: { slug: true } }),
+    prisma.artist.groupBy({ by: ['originCity'], _count: { _all: true } }),
+    listArtists({ sort: 'popularity', page: 1, pageSize: 26 }),
+  ]);
+
+  const topicSlugs = new Set(topics.map((t) => t.slug));
+  const subgenres = Object.entries(GENRE_HISTORY_TOPIC)
+    .filter(([, slug]) => topicSlugs.has(slug))
+    .map(([title, slug]) => ({ title, slug }));
+
+  const cityCount: Record<string, number> = {};
+  for (const g of grouped) if (g.originCity) cityCount[g.originCity] = g._count._all;
+  const sceneCounts: Record<string, number> = {};
+  for (const s of SCENES) sceneCounts[s.city] = cityCount[s.city] || 0;
+
+  return (
+    <LandingExperience
+      counts={{
+        artists: artistCount,
+        labels: labelCount,
+        subgenres: subgenres.length,
+        edges,
+        events: eventCount,
+        sources: sourceCount,
+      }}
+      featured={feat.artists.map((a) => a.artist_name).filter((n) => !/placeholder|test|unknown/i.test(n)).slice(0, 22)}
+      subgenres={subgenres}
+      sceneCounts={sceneCounts}
+    />
+  );
+}
+
 export default async function HomePage({
   searchParams,
 }: {
   searchParams: Record<string, string | undefined>;
 }) {
+  const hasQuery = Object.values(searchParams).some((v) => v != null && v !== '');
+  if (!hasQuery) return <LandingView />;
+
   const filter: ArtistFilter = {
     q: searchParams.q,
     genre: searchParams.genre,

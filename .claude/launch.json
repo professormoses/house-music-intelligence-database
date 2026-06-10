@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "hmid",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 3000
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "start", "-p", "3034", "-H", "127.0.0.1"],
+      "port": 3034
     }
   ]
 }
