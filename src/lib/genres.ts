@@ -26,6 +26,11 @@ export const HOUSE_GENRES = [
   'Latin House',
   'Gospel House',
   'Vocal House',
+  'French House',
+  'Bass House',
+  'Future House',
+  'Ghetto House',
+  'Amapiano',
   'Underground House',
   'Lo-Fi House',
 ] as const;
@@ -53,6 +58,14 @@ const ALIASES: Record<string, HouseGenre> = {
   'lo fi house': 'Lo-Fi House',
   'new york house': 'NY House',
   'ny house': 'NY House',
+  'microhouse': 'Minimal House',
+  'micro house': 'Minimal House',
+  'amapiano': 'Amapiano',
+  'french touch': 'French House',
+  'filter house': 'French House',
+  'juke': 'Ghetto House',
+  'footwork': 'Ghetto House',
+  'booty house': 'Ghetto House',
 };
 
 export function normalizeGenre(input: string): HouseGenre | null {
@@ -81,4 +94,34 @@ export function normalizeGenres(list: string[] | undefined): HouseGenre[] {
 
 export function genreSlug(g: string): string {
   return g.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+// Maps a canonical genre to its history / encyclopedia topic page (if one exists).
+export const GENRE_HISTORY_TOPIC: Partial<Record<HouseGenre, string>> = {
+  'Deep House': 'deep-house',
+  'Soulful House': 'soulful-house',
+  'Afro House': 'history-of-afro-house',
+  'Afro Tech': 'afro-tech',
+  'Tech House': 'tech-house',
+  'Chicago House': 'chicago-house',
+  'Detroit House': 'detroit-house',
+  'Garage House': 'garage-house',
+  'Jackin House': 'jackin-house',
+  'Disco House': 'disco-house',
+  'Funky House': 'funky-house',
+  'Progressive House': 'progressive-house',
+  'Minimal House': 'minimal-house',
+  'Acid House': 'acid-house',
+  'Tribal House': 'tribal-house',
+  'Latin House': 'latin-house',
+  'Gospel House': 'gospel-house',
+  'French House': 'french-house',
+  'Bass House': 'bass-house',
+  'Future House': 'future-house',
+  'Ghetto House': 'ghetto-house',
+  'Amapiano': 'amapiano',
+};
+
+export function genreHistoryTopic(g: string): string | null {
+  return (GENRE_HISTORY_TOPIC as Record<string, string>)[g] ?? null;
 }

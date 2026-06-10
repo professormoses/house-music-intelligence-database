@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { HOUSE_GENRES } from '@/lib/genres';
+import { HOUSE_GENRES, genreHistoryTopic } from '@/lib/genres';
 import { allArtistProfiles } from '@/lib/queries';
 
 export const dynamic = 'force-dynamic';
@@ -11,6 +11,7 @@ export default async function GenresPage() {
   const counts = HOUSE_GENRES.map((g) => ({
     genre: g,
     count: artists.filter((a) => a.genres.includes(g) || a.specific_house_subgenres.includes(g)).length,
+    history: genreHistoryTopic(g),
   }));
   return (
     <div className="space-y-4">
@@ -18,12 +19,18 @@ export default async function GenresPage() {
         <h1 className="text-2xl font-bold">House Music Genre Taxonomy</h1>
         <a href="/house-music-genre-taxonomy.md" className="font-mono text-xs px-2 py-1 border border-edge rounded">.md</a>
       </div>
-      <p className="text-muted text-sm max-w-2xl">A controlled vocabulary keeps the database consistent and machine-readable. Click a genre to filter the directory.</p>
+      <p className="text-muted text-sm max-w-2xl">A controlled vocabulary keeps the database consistent and machine-readable. Click a genre to filter the directory, or open its history to read where it came from, who started it, and the artists who spread it.</p>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
-        {counts.map(({ genre, count }) => (
-          <Link key={genre} href={`/?genre=${encodeURIComponent(genre)}`} className="flex justify-between bg-panel/40 border border-edge rounded-lg px-3 py-2 hover:border-accent">
-            <span>{genre}</span><span className="text-accent2 tabular-nums">{count}</span>
-          </Link>
+        {counts.map(({ genre, count, history }) => (
+          <div key={genre} className="flex items-center justify-between bg-panel/40 border border-edge rounded-lg px-3 py-2 hover:border-accent">
+            <Link href={`/?genre=${encodeURIComponent(genre)}`} className="flex-1 hover:text-accent">{genre}</Link>
+            <div className="flex items-center gap-2">
+              {history && (
+                <Link href={`/topic/${history}`} className="text-[11px] font-mono px-1.5 py-0.5 border border-edge rounded text-muted hover:text-accent hover:border-accent" title={`History of ${genre}`}>history</Link>
+              )}
+              <span className="text-accent2 tabular-nums">{count}</span>
+            </div>
+          </div>
         ))}
       </div>
     </div>

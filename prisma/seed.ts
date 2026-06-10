@@ -8,6 +8,13 @@ import {
   SEED_SOURCES,
 } from './seed-aux';
 import { SEED_TOPICS, SEED_RELATIONSHIPS } from './seed-topics';
+import {
+  HISTORY_ARTISTS,
+  SUBGENRE_TOPICS,
+  HISTORY_RELATIONSHIPS,
+  DEMUIR_LABELS,
+  MOVEMENT_EVENTS,
+} from './seed-history';
 import { normalizeGenres } from '../src/lib/genres';
 import type { ArtistProfile, FieldSource } from '../src/lib/types';
 
@@ -143,7 +150,7 @@ function toProfile(a: SeedArtist): ArtistProfile {
 async function main() {
   console.log('Seeding House Music Intelligence Database…');
 
-  for (const a of SEED_ARTISTS) {
+  for (const a of [...SEED_ARTISTS, ...HISTORY_ARTISTS]) {
     const profile = toProfile(a);
     const hasContact = !!(a.booking_agency || a.website);
     await prisma.artist.upsert({
@@ -222,7 +229,7 @@ async function main() {
     }
   }
 
-  for (const l of SEED_LABELS) {
+  for (const l of [...SEED_LABELS, ...DEMUIR_LABELS]) {
     await prisma.label.upsert({
       where: { slug: l.slug },
       // Refresh roster + genres + sources on re-seed (idempotent).
@@ -238,7 +245,7 @@ async function main() {
       create: {
         slug: l.slug,
         labelName: l.labelName,
-        website: l.website ?? null,
+        website: (l as any).website ?? null,
         country: l.country ?? null,
         city: (l as any).city ?? null,
         genresCsv: normalizeGenres(l.genres).join(',').toLowerCase(),
@@ -256,7 +263,7 @@ async function main() {
     });
   }
 
-  for (const e of SEED_EVENTS) {
+  for (const e of [...SEED_EVENTS, ...MOVEMENT_EVENTS]) {
     await prisma.event.upsert({
       where: { slug: e.slug },
       update: {},
@@ -359,8 +366,30 @@ async function main() {
     });
   }
 
+  // Subgenre history encyclopedia (refreshes on every re-seed so edits propagate).
+  for (const t of SUBGENRE_TOPICS) {
+    const fields = {
+      title: t.title,
+      type: t.type,
+      summary: t.summary ?? null,
+      body: t.body ?? '',
+      era: t.era ?? null,
+      city: t.city ?? null,
+      country: t.country ?? null,
+      relatedSlugs: JSON.stringify(t.relatedSlugs ?? []),
+      sources: JSON.stringify(t.sources ?? []),
+      confidenceScore: t.confidenceScore ?? 70,
+      lastVerifiedDate: '2026-06-10',
+    };
+    await prisma.topic.upsert({
+      where: { slug: t.slug },
+      update: fields,
+      create: { slug: t.slug, ...fields },
+    });
+  }
+
   // Knowledge-graph relationships (no unique key — dedupe on the tuple)
-  for (const r of SEED_RELATIONSHIPS) {
+  for (const r of [...SEED_RELATIONSHIPS, ...HISTORY_RELATIONSHIPS]) {
     const exists = await prisma.relationship.findFirst({
       where: {
         subjectType: r.subjectType,
