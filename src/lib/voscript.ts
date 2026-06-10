@@ -189,9 +189,17 @@ export async function generateVoScript(p: ArtistProfile): Promise<VoResult> {
     generator = 'claude';
   }
 
-  // shot list + CC images (best effort)
+  // shot list + CC images (best effort, hard-capped so generation never hangs)
   const shots = buildShots(p);
-  const ccByShot: CCImage[][] = await Promise.all(shots.map((s) => searchCC(s.query, 2)));
+  let ccByShot: CCImage[][] = shots.map(() => []);
+  try {
+    ccByShot = await Promise.race([
+      Promise.all(shots.map((s, i) => (i < 2 ? searchCC(s.query, 1) : Promise.resolve([] as CCImage[])))),
+      new Promise<CCImage[][]>((resolve) => setTimeout(() => resolve(shots.map(() => [])), 7000)),
+    ]);
+  } catch {
+    ccByShot = shots.map(() => []);
+  }
 
   const wc = wordCount(finalScript);
   const dur = Math.round((wc / 150) * 60);

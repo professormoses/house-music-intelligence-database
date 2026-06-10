@@ -48,6 +48,8 @@ export async function POST(req: Request) {
   if (!slug) return Response.json({ error: 'missing_slug' }, { status: 400 });
   const p = await getArtist(slug);
   if (!p) return Response.json({ error: 'not_found', slug }, { status: 404 });
+  // Regenerate replaces any prior script for this artist (no duplicates).
+  await prisma.voScript.deleteMany({ where: { artistSlug: slug } });
   const result = await generateAndStore(p);
   return Response.json({ batch: false, ...result });
 }

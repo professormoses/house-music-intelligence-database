@@ -15,6 +15,21 @@ export default function ReelStudio({ token }: { token: string }) {
 
   const auth = { 'x-admin-token': token, 'content-type': 'application/json' };
 
+  // Parse a response safely — a timeout/504 returns an empty or HTML body, which
+  // would otherwise throw "Unexpected end of JSON input".
+  async function safeJson(res: Response): Promise<any> {
+    const text = await res.text();
+    if (!text) {
+      if (res.status === 504 || res.status === 502) throw new Error('The request took too long (server timeout). It may still have saved — refresh the list. Try one artist at a time, or a smaller batch.');
+      throw new Error(`Server returned ${res.status} with no body.`);
+    }
+    try {
+      return JSON.parse(text);
+    } catch {
+      throw new Error(`Server returned a non-JSON response (${res.status}).`);
+    }
+  }
+
   async function loadScripts() {
     try {
       const r = await fetch('/api/vo-scripts', { headers: auth });
@@ -42,21 +57,21 @@ export default function ReelStudio({ token }: { token: string }) {
     setBusy('one'); setLog(`Generating VO script for ${slug}…`);
     try {
       const r = await fetch('/api/vo-script', { method: 'POST', headers: auth, body: JSON.stringify({ slug }) });
-      const d = await r.json();
+      const d = await safeJson(r);
       setLog(JSON.stringify(d, null, 2));
       await loadScripts();
       if (d.id) view(d.id);
-    } catch (e: any) { setLog('Error: ' + e?.message); } finally { setBusy(null); }
+    } catch (e: any) { setLog('Error: ' + e?.message); await loadScripts(); } finally { setBusy(null); }
   }
 
   async function batch() {
     setBusy('batch'); setLog('Generating top 5 most-popular unprofiled artists…');
     try {
       const r = await fetch('/api/vo-script', { method: 'POST', headers: auth, body: JSON.stringify({ batch: true, count: 5 }) });
-      const d = await r.json();
+      const d = await safeJson(r);
       setLog(JSON.stringify(d, null, 2));
       await loadScripts();
-    } catch (e: any) { setLog('Error: ' + e?.message); } finally { setBusy(null); }
+    } catch (e: any) { setLog('Error: ' + e?.message); await loadScripts(); } finally { setBusy(null); }
   }
 
   async function view(id: string) {

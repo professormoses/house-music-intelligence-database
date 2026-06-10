@@ -22,7 +22,7 @@ export async function searchCC(query: string, limit = 2): Promise<CCImage[]> {
     u.searchParams.set('mature', 'false');
     const res = await fetch(u.toString(), {
       headers: { 'user-agent': 'HouseMusicIntelligenceDB/1.0 (reel-studio)' },
-      signal: AbortSignal.timeout(8000),
+      signal: AbortSignal.timeout(5000),
     });
     if (!res.ok) return [];
     const data = (await res.json()) as any;

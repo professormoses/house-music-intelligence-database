@@ -21,8 +21,41 @@ export default function BuildPanel({ token, sources }: { token: string; sources:
     }
   }
 
+  // Search MusicBrainz and add new artists, looping until ~250 are added.
+  async function discover() {
+    setBusy('discover');
+    let cum = 0, total = 0, guard = 0;
+    try {
+      while (guard++ < 6 && cum < 250) {
+        setLog(`Searching MusicBrainz for new house artists… added ${cum} so far (this can take a minute)…`);
+        const res = await fetch('/api/discover', { method: 'POST', headers: { 'x-admin-token': token, 'content-type': 'application/json' }, body: JSON.stringify({ limit: 250 - cum }) });
+        const text = await res.text();
+        let d: any;
+        try { d = JSON.parse(text); } catch { setLog(`Server timeout mid-search — ${cum} added so far are saved. Click again to continue.`); break; }
+        if (d.error) { setLog('Error: ' + d.error); break; }
+        cum += d.added || 0; total = d.total || total;
+        setLog(`Added ${cum} new artists (database total ${total}). ${d.added === 0 ? 'No more new matches found.' : ''}`);
+        if (!d.added) break;
+      }
+      setLog((p) => p + `\nDone. Tip: now run "Enrich links (MusicBrainz)" in the Pipeline section to fill their socials & streaming.`);
+    } catch (e: any) { setLog('Error: ' + String(e?.message ?? e)); } finally { setBusy(null); }
+  }
+
   return (
     <div className="space-y-5">
+      {/* Discover new artists from the web */}
+      <div className="bg-panel/40 border border-accent/40 rounded-xl p-4 space-y-3">
+        <h3 className="font-semibold">🔎 Find &amp; add new artists (search MusicBrainz)</h3>
+        <p className="text-xs text-muted">
+          Searches MusicBrainz across the house family (deep, tech, afro, soulful, melodic, disco, garage,
+          acid and more) and adds <strong>up to 250 brand-new artists</strong> not already in your database —
+          each tagged with city, style/genre, and man/woman where known, so the web connects itself.
+        </p>
+        <button onClick={discover} disabled={!!busy} className="bg-accent text-white rounded-lg px-4 py-2 text-sm font-medium disabled:opacity-50">
+          {busy === 'discover' ? 'Searching…' : 'Find & add 250 new artists'}
+        </button>
+      </div>
+
       {/* Search a site → grow the database */}
       <div className="bg-panel/40 border border-edge rounded-xl p-4 space-y-3">
         <h3 className="font-semibold">Search a source → add to database</h3>
