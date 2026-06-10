@@ -6,11 +6,16 @@
   color-scheme: dark;
 }
 
-/* Smaller global type scale (everything is rem-based, so this shrinks the
-   whole UI proportionally). */
+/* Global type scale (rem-based, so it scales the whole UI proportionally). */
 html {
-  font-size: 13px;
+  font-size: 14px;
 }
+
+/* User-adjustable directory font size (set on #directory via the control). */
+#directory[data-font='sm'] { font-size: 0.85rem; }
+#directory[data-font='md'] { font-size: 1rem; }
+#directory[data-font='lg'] { font-size: 1.15rem; }
+#directory[data-font='xl'] { font-size: 1.3rem; }
 
 body {
   font-size: 0.95rem;

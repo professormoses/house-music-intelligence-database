@@ -3,6 +3,7 @@ import { listArtists, type ArtistFilter } from '@/lib/queries';
 import { HOUSE_GENRES } from '@/lib/genres';
 import { SITE, abs } from '@/lib/site';
 import { prisma } from '@/lib/db';
+import FontSizeControl from '@/components/FontSizeControl';
 
 export const dynamic = 'force-dynamic';
 
@@ -129,8 +130,11 @@ export default async function HomePage({
         </div>
       </form>
 
-      <section>
-        <p className="text-sm text-muted mb-2">{total} result{total === 1 ? '' : 's'}</p>
+      <section id="directory" data-font="md">
+        <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
+          <p className="text-sm text-muted">{total} result{total === 1 ? '' : 's'}</p>
+          <FontSizeControl />
+        </div>
         <div className="overflow-x-auto border border-edge rounded-xl">
           <table className="w-full text-sm">
             <thead>
@@ -150,7 +154,15 @@ export default async function HomePage({
                   <td className="p-3 font-medium">
                     <Link href={`/artist/${a.slug}`} className="hover:text-accent">{a.artist_name}</Link>
                   </td>
-                  <td className="p-3 text-muted">{[a.origin_city, a.origin_country].filter(Boolean).join(', ')}</td>
+                  <td className="p-3 text-muted">
+                    {a.origin_city && (
+                      <Link href={`/?city=${encodeURIComponent(a.origin_city)}`} className="hover:text-accent">{a.origin_city}</Link>
+                    )}
+                    {a.origin_city && a.origin_country ? ', ' : ''}
+                    {a.origin_country && (
+                      <Link href={`/?country=${encodeURIComponent(a.origin_country)}`} className="hover:text-accent hover:underline">{a.origin_country}</Link>
+                    )}
+                  </td>
                   <td className="p-3 text-muted">
                     {a.primary_scene ? (
                       <Link href={`/?scene=${encodeURIComponent(a.primary_scene)}`} className="hover:text-accent">{a.primary_scene}</Link>
