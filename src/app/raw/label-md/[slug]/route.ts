@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/db';
 import { abs, prettyDate } from '@/lib/site';
 import { suggestedCitation } from '@/lib/citation';
+import { slugify } from '@/lib/ingest';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,6 +11,14 @@ export async function GET(_req: Request, { params }: { params: { slug: string } 
   if (!l) return new Response('# Not found\n', { status: 404, headers: { 'content-type': 'text/markdown; charset=utf-8' } });
   const roster: string[] = JSON.parse(l.artistRoster || '[]');
   const sources: string[] = JSON.parse(l.sourceUrls || '[]');
+  const existing = new Set(
+    (await prisma.artist.findMany({ where: { slug: { in: roster.map(slugify) } }, select: { slug: true } })).map((a) => a.slug),
+  );
+  const rosterMd = roster.length
+    ? roster
+        .map((r) => (existing.has(slugify(r)) ? `- [${r}](${abs(`/artist/${slugify(r)}`)})` : `- ${r}`))
+        .join('\n')
+    : '_None on record._';
 
   const md = `# ${l.labelName}
 
@@ -24,7 +33,7 @@ export async function GET(_req: Request, { params }: { params: { slug: string } 
 - **Last verified:** ${prettyDate(l.lastVerifiedDate)}
 
 ## Roster
-${roster.length ? roster.map((r) => `- ${r}`).join('\n') : '_None on record._'}
+${rosterMd}
 
 ## Sources
 ${sources.length ? sources.map((s, i) => `${i + 1}. ${s}`).join('\n') : '_None on record._'}

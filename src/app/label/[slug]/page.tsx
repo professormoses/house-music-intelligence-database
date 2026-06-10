@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { prisma } from '@/lib/db';
 import { abs, prettyDate } from '@/lib/site';
+import { slugify } from '@/lib/ingest';
 
 export const dynamic = 'force-dynamic';
 
@@ -21,6 +22,15 @@ export default async function LabelPage({ params }: { params: { slug: string } }
   if (!l) notFound();
   const roster: string[] = JSON.parse(l.artistRoster || '[]');
   const sources: string[] = JSON.parse(l.sourceUrls || '[]');
+
+  // Resolve which roster names already exist as artist profiles so we can link
+  // straight to them; the rest link to a directory search to find/add them.
+  const candidateSlugs = roster.map(slugify);
+  const existing = await prisma.artist.findMany({
+    where: { slug: { in: candidateSlugs } },
+    select: { slug: true },
+  });
+  const existingSlugs = new Set(existing.map((a) => a.slug));
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -59,7 +69,21 @@ export default async function LabelPage({ params }: { params: { slug: string } }
         <div className="bg-panel/40 border border-edge rounded-xl p-4">
           <h2 className="font-semibold mb-2">Roster</h2>
           <ul className="text-sm space-y-1">
-            {roster.map((r) => <li key={r}>{r}</li>)}
+            {roster.map((r) => {
+              const s = slugify(r);
+              const inDb = existingSlugs.has(s);
+              return (
+                <li key={r}>
+                  {inDb ? (
+                    <Link href={`/artist/${s}`} className="text-accent hover:underline">{r}</Link>
+                  ) : (
+                    <Link href={`/?q=${encodeURIComponent(r)}`} className="text-zinc-300 hover:text-accent">
+                      {r} <span className="text-muted text-xs">(search)</span>
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
             {!roster.length && <li className="text-muted">None on record.</li>}
           </ul>
         </div>
