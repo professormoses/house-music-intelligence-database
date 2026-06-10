@@ -113,6 +113,7 @@ export default async function HomePage({
           <input name="country" defaultValue={searchParams.country} placeholder="Country" className="w-32 bg-ink border border-edge rounded-lg px-3 py-2 text-sm" />
           <select name="sort" defaultValue={filter.sort} className="bg-ink border border-edge rounded-lg px-3 py-2 text-sm">
             <option value="priority">Sort: Priority</option>
+            <option value="popularity">Sort: Popularity</option>
             <option value="reach">Sort: Reach</option>
             <option value="name">Sort: Name</option>
             <option value="recent">Sort: Recently updated</option>
@@ -144,6 +145,7 @@ export default async function HomePage({
                 <th className="p-3">Scene</th>
                 <th className="p-3">Genres</th>
                 <th className="p-3 text-right">Listeners</th>
+                <th className="p-3 text-right">Popularity</th>
                 <th className="p-3 text-right">Priority</th>
                 <th className="p-3">Formats</th>
               </tr>
@@ -177,6 +179,7 @@ export default async function HomePage({
                     ))}
                   </td>
                   <td className="p-3 text-right tabular-nums">{a.monthly_listeners?.toLocaleString() ?? '—'}</td>
+                  <td className="p-3 text-right tabular-nums text-accent">{a.popularity_score}</td>
                   <td className="p-3 text-right tabular-nums text-accent2">{a.house_crew_priority_score}</td>
                   <td className="p-3 font-mono text-xs space-x-2">
                     <Link href={`/artist/${a.slug}`}>html</Link>
@@ -186,7 +189,7 @@ export default async function HomePage({
                 </tr>
               ))}
               {!artists.length && (
-                <tr><td colSpan={7} className="p-6 text-center text-muted">No artists match these filters.</td></tr>
+                <tr><td colSpan={8} className="p-6 text-center text-muted">No artists match these filters.</td></tr>
               )}
             </tbody>
           </table>

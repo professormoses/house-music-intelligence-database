@@ -1,6 +1,7 @@
 import type { Artist } from '@prisma/client';
 import type { ArtistProfile } from './types';
 import { computeScores } from './scoring';
+import { computePopularity } from './popularity';
 import { suggestedCitation } from './citation';
 import { abs } from './site';
 
@@ -65,6 +66,7 @@ export function serializeArtist(row: Artist): ArtistProfile {
   if (merged.current_city && merged.current_city === merged.current_country) merged.current_city = null;
 
   merged.scores = computeScores(merged);
+  merged.popularity_score = computePopularity(merged).score;
   merged.suggested_citation = suggestedCitation({
     title: `${merged.artist_name} — House Music Artist Profile`,
     path: `/artist/${merged.slug}`,
@@ -84,6 +86,7 @@ export interface ArtistSummary {
   monthly_listeners?: number | null;
   confidence_score: number;
   house_crew_priority_score: number;
+  popularity_score: number;
   url: string;
   markdown_url: string;
   json_url: string;
@@ -100,6 +103,7 @@ export function toSummary(p: ArtistProfile): ArtistSummary {
     monthly_listeners: p.monthly_listeners,
     confidence_score: p.confidence_score,
     house_crew_priority_score: p.scores.house_crew_priority_score,
+    popularity_score: p.popularity_score ?? 0,
     url: abs(`/artist/${p.slug}`),
     markdown_url: abs(`/artist/${p.slug}.md`),
     json_url: abs(`/api/artists/${p.slug}.json`),

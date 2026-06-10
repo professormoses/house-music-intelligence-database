@@ -136,6 +136,7 @@ export interface ArtistProfile {
 
   // scores
   scores: ArtistScores;
+  popularity_score?: number;
 
   // provenance
   source_urls: string[];

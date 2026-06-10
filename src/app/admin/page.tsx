@@ -5,6 +5,7 @@ import { checkTokenValue, adminToken, ADMIN_COOKIE } from '@/lib/auth';
 import { connectorStatus } from '@/connectors/registry';
 import AdminActions from '@/components/AdminActions';
 import BuildPanel from '@/components/BuildPanel';
+import ReelStudio from '@/components/ReelStudio';
 import { prettyDate } from '@/lib/site';
 
 export const dynamic = 'force-dynamic';
@@ -76,6 +77,11 @@ export default async function AdminPage({ searchParams }: { searchParams: { toke
         <Stat label="Contacts" value={contacts} />
         <Stat label="Review queue" value={review.length} />
       </div>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold text-accent2">🎬 Reel Studio — 55s VO scripts</h2>
+        <ReelStudio token={token} />
+      </section>
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-accent2">Build the database</h2>

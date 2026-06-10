@@ -40,6 +40,7 @@ model Artist {
   hasUpcoming      Boolean  @default(false)
   blackLineage     Boolean  @default(false)
   confidenceScore  Int      @default(0)
+  popularityScore  Int      @default(0) // 0-100 from 7 verifiable parameters
   lastVerifiedDate String?  // ISO date
   profile          String   @default("{}") // full canonical record as JSON
   createdAt        DateTime @default(now())
@@ -268,6 +269,24 @@ model Relationship {
   @@index([subjectType, subjectSlug])
   @@index([objectType, objectSlug])
   @@index([predicate])
+}
+
+// Generated 55-second VO scripts for Reels / Shorts (admin "Reel Studio").
+model VoScript {
+  id          String   @id @default(cuid())
+  artistSlug  String
+  artistName  String
+  title       String
+  body        String   @default("") // the full, ready-to-read text file
+  wordCount   Int      @default(0)
+  durationSec Int      @default(0)
+  popularity  Int      @default(0)
+  generator   String   @default("deterministic") // deterministic | claude
+  status      String   @default("complete") // complete | error
+  createdAt   DateTime @default(now())
+
+  @@index([artistSlug])
+  @@index([createdAt])
 }
 
 model DuplicateMatch {

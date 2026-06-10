@@ -17,7 +17,7 @@ export interface ArtistFilter {
   emerging?: boolean;
   legend?: boolean;
   blackLineage?: boolean;
-  sort?: 'priority' | 'reach' | 'name' | 'recent';
+  sort?: 'priority' | 'reach' | 'name' | 'recent' | 'popularity';
   page?: number;
   pageSize?: number;
 }
@@ -57,6 +57,18 @@ export async function listArtists(f: ArtistFilter) {
   const pageSize = Math.min(200, Math.max(1, f.pageSize ?? 25));
   const where = buildWhere(f);
 
+  // Popularity is a computed (log-scaled, 7-parameter) value, so rank globally
+  // in JS rather than at the DB level.
+  if (f.sort === 'popularity') {
+    const rows = await prisma.artist.findMany({ where });
+    const all = rows
+      .map((r) => toSummary(serializeArtist(r)))
+      .sort((a, b) => b.popularity_score - a.popularity_score);
+    const total = all.length;
+    const start = (page - 1) * pageSize;
+    return { total, page, pageSize, pages: Math.ceil(total / pageSize), artists: all.slice(start, start + pageSize) };
+  }
+
   const orderBy: Prisma.ArtistOrderByWithRelationInput =
     f.sort === 'name'
       ? { artistName: 'asc' }
@@ -90,4 +102,18 @@ export async function allArtistProfiles() {
 
 export async function allArtistSlugs() {
   return prisma.artist.findMany({ select: { slug: true, updatedAt: true } });
+}
+
+// Top-N most popular artists that don't yet have a VO script — for batching.
+export async function topUnprofiledArtists(n: number) {
+  const [rows, scripts] = await Promise.all([
+    prisma.artist.findMany(),
+    prisma.voScript.findMany({ select: { artistSlug: true } }),
+  ]);
+  const profiled = new Set(scripts.map((s) => s.artistSlug));
+  return rows
+    .map(serializeArtist)
+    .filter((p) => !profiled.has(p.slug))
+    .sort((a, b) => (b.popularity_score ?? 0) - (a.popularity_score ?? 0))
+    .slice(0, n);
 }
