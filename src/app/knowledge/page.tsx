@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'The authoritative, citable knowledge base on house music history, culture, and its Black origins.',
 };
 
-const ORDER = ['origins', 'history', 'timeline', 'person', 'venue', 'place', 'genre', 'movement', 'answer', 'glossary'];
+const ORDER = ['origins', 'history', 'timeline', 'equipment', 'festival', 'record', 'person', 'venue', 'place', 'genre', 'movement', 'answer', 'glossary'];
 
 export default async function KnowledgePage() {
   const topics = await allTopics();
@@ -49,14 +49,17 @@ export default async function KnowledgePage() {
       {types.map((type) => (
         <section key={type}>
           <h2 className="text-lg font-semibold text-accent2 mb-3">{TYPE_LABELS[type] ?? type}</h2>
-          <div className="grid sm:grid-cols-2 gap-3">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 items-stretch">
             {grouped.get(type)!.map((t) => (
-              <div key={t.slug} className="bg-panel/40 border border-edge rounded-xl p-4">
-                <Link href={`/topic/${t.slug}`} className="font-medium hover:text-accent">{t.title}</Link>
-                {t.summary && <p className="text-sm text-muted mt-1 line-clamp-2">{t.summary}</p>}
-                <div className="font-mono text-xs text-muted mt-2 space-x-2">
-                  <a href={`/topic/${t.slug}.md`}>md</a>
-                  <a href={`/api/topics/${t.slug}.json`}>json</a>
+              <div key={t.slug} className="min-w-0 flex flex-col bg-panel/40 border border-edge rounded-xl p-4 hover:border-accent/60 transition">
+                <Link href={`/topic/${t.slug}`} className="font-medium hover:text-accent break-words">{t.title}</Link>
+                {(t.era || t.city) && (
+                  <span className="text-[11px] font-mono text-muted/80 mt-0.5">{[t.era, t.city].filter(Boolean).join(' · ')}</span>
+                )}
+                {t.summary && <p className="text-sm text-muted mt-1.5 line-clamp-3 break-words flex-1">{t.summary}</p>}
+                <div className="font-mono text-[11px] text-muted/70 mt-3 space-x-2">
+                  <a href={`/topic/${t.slug}.md`} className="hover:text-accent">md</a>
+                  <a href={`/api/topics/${t.slug}.json`} className="hover:text-accent">json</a>
                 </div>
               </div>
             ))}

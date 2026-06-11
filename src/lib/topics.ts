@@ -82,6 +82,9 @@ export const TYPE_LABELS: Record<string, string> = {
   glossary: 'Reference',
   answer: 'Answer',
   timeline: 'Timeline',
+  equipment: 'Equipment & Machines',
+  festival: 'Festivals & Events',
+  record: 'Classic Records',
   page: 'Page',
 };
 

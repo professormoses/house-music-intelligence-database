@@ -8,6 +8,7 @@ import {
   SEED_SOURCES,
 } from './seed-aux';
 import { SEED_TOPICS, SEED_RELATIONSHIPS } from './seed-topics';
+import { ENCYCLOPEDIA_TOPICS, ENCYCLOPEDIA_LABELS } from './seed-encyclopedia';
 import { LA_ROSTER } from './seed-la';
 import {
   HISTORY_ARTISTS,
@@ -230,7 +231,7 @@ async function main() {
     }
   }
 
-  for (const l of [...SEED_LABELS, ...DEMUIR_LABELS]) {
+  for (const l of [...SEED_LABELS, ...DEMUIR_LABELS, ...ENCYCLOPEDIA_LABELS]) {
     await prisma.label.upsert({
       where: { slug: l.slug },
       // Refresh roster + genres + sources on re-seed (idempotent).
@@ -367,8 +368,8 @@ async function main() {
     });
   }
 
-  // Subgenre history encyclopedia (refreshes on every re-seed so edits propagate).
-  for (const t of SUBGENRE_TOPICS) {
+  // Subgenre history + encyclopedia (refresh on every re-seed so edits propagate).
+  for (const t of [...SUBGENRE_TOPICS, ...ENCYCLOPEDIA_TOPICS]) {
     const fields = {
       title: t.title,
       type: t.type,
