@@ -9,6 +9,7 @@ import {
 } from './seed-aux';
 import { SEED_TOPICS, SEED_RELATIONSHIPS } from './seed-topics';
 import { ENCYCLOPEDIA_TOPICS, ENCYCLOPEDIA_LABELS } from './seed-encyclopedia';
+import { LABELS_50, LABEL_ARTISTS } from './seed-labels-50';
 import { LA_ROSTER } from './seed-la';
 import {
   HISTORY_ARTISTS,
@@ -231,7 +232,8 @@ async function main() {
     }
   }
 
-  for (const l of [...SEED_LABELS, ...DEMUIR_LABELS, ...ENCYCLOPEDIA_LABELS]) {
+  for (const l of [...SEED_LABELS, ...DEMUIR_LABELS, ...ENCYCLOPEDIA_LABELS, ...LABELS_50]) {
+    const labelProfile = JSON.stringify({ genres: normalizeGenres(l.genres), tier: (l as any).tier ?? null });
     await prisma.label.upsert({
       where: { slug: l.slug },
       // Refresh roster + genres + sources on re-seed (idempotent).
@@ -243,6 +245,7 @@ async function main() {
         country: l.country ?? null,
         sourceUrls: JSON.stringify(l.sourceUrls ?? []),
         confidenceScore: l.confidenceScore ?? 50,
+        profile: labelProfile,
       },
       create: {
         slug: l.slug,
@@ -257,7 +260,7 @@ async function main() {
         instagram: (l as any).instagram ?? null,
         beatport: (l as any).beatport ?? null,
         discogs: (l as any).discogs ?? null,
-        profile: JSON.stringify({ genres: normalizeGenres(l.genres) }),
+        profile: labelProfile,
         sourceUrls: JSON.stringify(l.sourceUrls ?? []),
         confidenceScore: l.confidenceScore ?? 50,
         lastVerifiedDate: '2026-06-08',
@@ -429,6 +432,18 @@ async function main() {
       if (r.tagged) la++;
     }
     console.log(`LA scene roster: ${la}/${LA_ROSTER.length} tagged (region set)`);
+  }
+
+  // Label rosters: every artist on the 50 labels, connected both ways.
+  // Merge-safe: unions label affiliations onto existing artists, creates missing ones.
+  {
+    const { upsertLabelArtist } = await import('../src/lib/ingest');
+    let created = 0;
+    for (const e of LABEL_ARTISTS) {
+      const r = await upsertLabelArtist(e);
+      if (r.created) created++;
+    }
+    console.log(`Label rosters: ${LABEL_ARTISTS.length} artists linked, ${created} newly created`);
   }
 
   // Grow to 200 from the curated roster on a fresh database (idempotent: skips

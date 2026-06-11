@@ -394,6 +394,52 @@ export async function upsertLAArtist(input: LAArtistInput): Promise<{ slug: stri
   return { slug, created: true, tagged: true };
 }
 
+export interface LabelArtistInput {
+  name: string;
+  labels: string[]; // exact label names (must match Label.labelName) to affiliate
+  genres?: string[];
+  country?: string;
+}
+
+// Add OR enrich an artist with one or more label affiliations. Merge-safe:
+// unions the label names into labels_affiliated (so the artist page links to each
+// label) and only fills genres/country when the artist has none. Creates the
+// artist if missing. The label's own roster (Label.artistRoster) handles the
+// reverse link, so the connection is two-way.
+export async function upsertLabelArtist(input: LabelArtistInput): Promise<{ slug: string; created: boolean }> {
+  const slug = slugify(input.name);
+  if (!slug) return { slug: '', created: false };
+  const labels = (input.labels || []).filter(Boolean);
+  const existing = await prisma.artist.findUnique({ where: { slug } });
+
+  if (existing) {
+    const profile: any = serializeArtist(existing);
+    const set = new Set<string>([...(profile.labels_affiliated || [])]);
+    for (const lb of labels) set.add(lb);
+    profile.labels_affiliated = [...set];
+    const data: any = {};
+    if ((!existing.genresCsv || existing.genresCsv === '') && input.genres?.length) {
+      const g = normalizeGenres(input.genres);
+      if (g.length) { profile.genres = g; data.genresCsv = g.join(',').toLowerCase(); }
+    }
+    if (!existing.originCountry && input.country) { profile.origin_country = input.country; data.originCountry = input.country; }
+    data.profile = JSON.stringify(profile);
+    await prisma.artist.update({ where: { slug }, data });
+    return { slug, created: false };
+  }
+
+  await upsertCustomArtist({
+    name: input.name,
+    country: input.country,
+    scene: 'House',
+    genres: input.genres?.length ? input.genres : ['House'],
+    labelsAffiliated: labels,
+    confidence: 45,
+    sourceName: 'Label roster research (World Famous House Crew)',
+  });
+  return { slug, created: true };
+}
+
 // Grow the database from the curated roster up to a target artist count.
 export async function importRoster(target: number): Promise<{ added: number; total: number; rosterRemaining: number; exhausted: boolean }> {
   const { ROSTER } = await import('../data/roster');
