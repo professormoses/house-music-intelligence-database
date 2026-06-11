@@ -226,7 +226,7 @@ export default function LandingExperience({ counts, featured, subgenres, sceneCo
               return (
                 <Link
                   key={s.name}
-                  href={`/?city=${encodeURIComponent(s.city)}`}
+                  href={s.city === 'Los Angeles' ? '/la' : `/?city=${encodeURIComponent(s.city)}`}
                   title={s.note}
                   className={`group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition ${
                     s.origin

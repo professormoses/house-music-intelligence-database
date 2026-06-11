@@ -31,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {process.env.LA_RADAR_URL && (
                 <a href={process.env.LA_RADAR_URL} className="text-accent hover:text-white font-medium">↗ LA Radar</a>
               )}
+              <Link href="/la" className="text-accent hover:text-white font-medium">LA Scene</Link>
               <Link href="/knowledge" className="text-accent2 hover:text-white">Knowledge</Link>
               <Link href="/" className="hover:text-white">Directory</Link>
               <Link href="/labels" className="hover:text-white">Labels</Link>

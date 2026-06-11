@@ -6,6 +6,7 @@ export interface ArtistFilter {
   q?: string;
   city?: string;
   country?: string;
+  region?: string; // local-scene tag, e.g. "Greater LA"
   genre?: string; // matched against genresCsv + subgenresCsv
   scene?: string;
   label?: string;
@@ -33,6 +34,7 @@ export function buildWhere(f: ArtistFilter): Prisma.ArtistWhereInput {
       ],
     });
   if (f.city) AND.push({ OR: [{ originCity: { contains: f.city } }, { currentCity: { contains: f.city } }] });
+  if (f.region) AND.push({ region: f.region });
   if (f.country)
     AND.push({ OR: [{ originCountry: { contains: f.country } }, { currentCountry: { contains: f.country } }] });
   if (f.genre) {

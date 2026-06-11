@@ -4,6 +4,10 @@
     {
       "path": "/api/repopulate?cron=1",
       "schedule": "0 12 * * *"
+    },
+    {
+      "path": "/api/cron/discover-la",
+      "schedule": "0 13 * * 1"
     }
   ]
 }

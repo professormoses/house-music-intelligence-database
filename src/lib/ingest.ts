@@ -22,6 +22,9 @@ export interface IngestArtistInput {
   realName?: string;
   country?: string;
   city?: string;
+  currentCity?: string;
+  currentCountry?: string;
+  region?: string;
   scene?: string;
   genres?: string[];
   subgenres?: string[];
@@ -62,6 +65,9 @@ export async function ingestArtist(input: IngestArtistInput): Promise<IngestResu
     const data: any = {};
     if (input.country && !existing.originCountry) data.originCountry = input.country;
     if (input.city && !existing.originCity) data.originCity = input.city;
+    if (input.currentCity && !existing.currentCity) data.currentCity = input.currentCity;
+    if (input.currentCountry && !existing.currentCountry) data.currentCountry = input.currentCountry;
+    if (input.region && !existing.region) data.region = input.region;
     if (input.scene && !existing.primaryScene) data.primaryScene = input.scene;
     if (genres.length && !existing.genresCsv) data.genresCsv = genres.join(',').toLowerCase();
     if (Object.keys(data).length === 0) return { slug, created: false, updated: false };
@@ -95,6 +101,9 @@ export async function ingestArtist(input: IngestArtistInput): Promise<IngestResu
       realName: input.realName ?? null,
       originCountry: input.country ?? null,
       originCity: input.city ?? null,
+      currentCity: input.currentCity ?? null,
+      currentCountry: input.currentCountry ?? null,
+      region: input.region ?? null,
       primaryScene: input.scene ?? null,
       genresCsv: genres.join(',').toLowerCase(),
       subgenresCsv: normalizeGenres(input.subgenres).join(',').toLowerCase(),
@@ -236,6 +245,7 @@ export interface CustomArtistInput {
   city?: string;
   currentCity?: string;
   currentCountry?: string;
+  region?: string;
   scene?: string;
   genres?: string[];
   subgenres?: string[];
@@ -267,6 +277,7 @@ export async function upsertCustomArtist(input: CustomArtistInput): Promise<{ sl
   if (input.country) profile.origin_country = input.country;
   if (input.currentCity) profile.current_city = input.currentCity;
   if (input.currentCountry) profile.current_country = input.currentCountry;
+  if (input.region) profile.scene_region = input.region;
   if (input.scene) profile.primary_scene = input.scene;
   if (genres.length) profile.genres = genres;
   if (subgenres.length) profile.specific_house_subgenres = subgenres;
@@ -290,6 +301,7 @@ export async function upsertCustomArtist(input: CustomArtistInput): Promise<{ sl
     originCountry: input.country ?? existing?.originCountry ?? null,
     currentCity: input.currentCity ?? existing?.currentCity ?? null,
     currentCountry: input.currentCountry ?? existing?.currentCountry ?? null,
+    region: input.region ?? existing?.region ?? null,
     primaryScene: input.scene ?? existing?.primaryScene ?? null,
     genresCsv: genres.length ? genres.join(',').toLowerCase() : existing?.genresCsv ?? '',
     subgenresCsv: subgenres.length ? subgenres.join(',').toLowerCase() : existing?.subgenresCsv ?? '',
@@ -307,6 +319,79 @@ export async function upsertCustomArtist(input: CustomArtistInput): Promise<{ sl
   else await prisma.artist.create({ data: { slug, ...data } });
   await prisma.changeLog.create({ data: { entityType: 'artist', entitySlug: slug, changeType: existing ? 'update' : 'create', source: src, newValue: `Custom ${existing ? 'update' : 'add'}: ${input.name}` } });
   return { slug, created: !existing };
+}
+
+export interface LAArtistInput {
+  name: string;
+  region: string; // "Greater LA" | "San Diego" | "Inland Empire"
+  city?: string;
+  genres?: string[];
+  instagram?: string;
+  soundcloud?: string;
+  note?: string;
+  source?: string;
+}
+
+// Normalize a possibly-bare handle ("mikeylion", "@mikeylion") into a full URL.
+function socialUrl(platform: 'instagram' | 'soundcloud', v?: string): string | undefined {
+  if (!v) return undefined;
+  const s = v.trim().replace(/^@/, '');
+  if (!s) return undefined;
+  if (/^https?:\/\//i.test(s)) return s;
+  return platform === 'instagram' ? `https://instagram.com/${s}` : `https://soundcloud.com/${s}`;
+}
+
+// Add OR tag a local-scene artist. Merge-safe: ALWAYS sets the region tag and
+// fills the current city, never clobbering an existing artist's genres/bio/links.
+// New artists are created with full house metadata. This is the primitive used by
+// the LA roster seed, the /api/add-artist endpoint, and the weekly LA cron.
+export async function upsertLAArtist(input: LAArtistInput): Promise<{ slug: string; created: boolean; tagged: boolean }> {
+  const slug = slugify(input.name);
+  if (!slug) return { slug: '', created: false, tagged: false };
+  const existing = await prisma.artist.findUnique({ where: { slug } });
+  const ig = socialUrl('instagram', input.instagram);
+  const sc = socialUrl('soundcloud', input.soundcloud);
+  const src = input.source ? `LA scene research (${input.source})` : 'LA scene research (World Famous House Crew)';
+  const genres = normalizeGenres(input.genres);
+
+  if (existing) {
+    const profile: any = serializeArtist(existing);
+    profile.scene_region = input.region;
+    if (input.city && !profile.current_city) profile.current_city = input.city;
+    profile.current_country = profile.current_country || 'United States';
+    for (const [k, v] of [['instagram', ig], ['soundcloud', sc]] as const) {
+      if (v && !profile[k]) {
+        profile[k] = v;
+        profile.field_sources = profile.field_sources || {};
+        profile.field_sources[k] = { value: v, source_name: src, last_verified_date: today(), confidence_score: 80 };
+        profile.source_urls = profile.source_urls || [];
+        if (!profile.source_urls.includes(v)) profile.source_urls.push(v);
+      }
+    }
+    const data: any = { region: input.region, profile: JSON.stringify(profile) };
+    if (!existing.currentCity && input.city) data.currentCity = input.city;
+    if (!existing.currentCountry) data.currentCountry = 'United States';
+    if (ig || sc) data.hasContact = true;
+    await prisma.artist.update({ where: { slug }, data });
+    return { slug, created: false, tagged: true };
+  }
+
+  await upsertCustomArtist({
+    name: input.name,
+    city: input.city,
+    country: 'United States',
+    currentCity: input.city,
+    currentCountry: 'United States',
+    region: input.region,
+    scene: 'House',
+    genres: input.genres && input.genres.length ? input.genres : ['House'],
+    bioShort: input.note,
+    links: { ...(ig ? { instagram: ig } : {}), ...(sc ? { soundcloud: sc } : {}) },
+    confidence: 55,
+    sourceName: src,
+  });
+  if (ig || sc) await prisma.artist.update({ where: { slug }, data: { hasContact: true } });
+  return { slug, created: true, tagged: true };
 }
 
 // Grow the database from the curated roster up to a target artist count.

@@ -8,6 +8,7 @@ import {
   SEED_SOURCES,
 } from './seed-aux';
 import { SEED_TOPICS, SEED_RELATIONSHIPS } from './seed-topics';
+import { LA_ROSTER } from './seed-la';
 import {
   HISTORY_ARTISTS,
   SUBGENRE_TOPICS,
@@ -415,6 +416,18 @@ async function main() {
           note: r.note ?? null,
         },
       });
+  }
+
+  // Southern California scene roster (Greater LA / San Diego / Inland Empire).
+  // Merge-safe: tags region on existing artists, creates new ones with house metadata.
+  {
+    const { upsertLAArtist } = await import('../src/lib/ingest');
+    let la = 0;
+    for (const e of LA_ROSTER) {
+      const r = await upsertLAArtist(e);
+      if (r.tagged) la++;
+    }
+    console.log(`LA scene roster: ${la}/${LA_ROSTER.length} tagged (region set)`);
   }
 
   // Grow to 200 from the curated roster on a fresh database (idempotent: skips

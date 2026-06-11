@@ -26,6 +26,7 @@ model Artist {
   originCountry    String?
   currentCity      String?
   currentCountry   String?
+  region           String?  // local-scene tag, e.g. "Greater LA" | "San Diego" | "Inland Empire"
   primaryScene     String?
   genresCsv        String   @default("") // lowercased, comma-joined for filtering
   subgenresCsv     String   @default("")
@@ -54,6 +55,7 @@ model Artist {
 
   @@index([primaryScene])
   @@index([originCountry])
+  @@index([region])
 }
 
 model ArtistRelease {
