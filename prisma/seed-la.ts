@@ -4716,5 +4716,1431 @@ export const LA_ROSTER: LARosterEntry[] = [
     "soundcloud": "odin",
     "note": "LA up-and-coming DJ/producer",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Jay-J",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Soulful House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Mama's House (Mama Shelter)",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "JJ Flores",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Mama's House (Mama Shelter)",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Christian Bradford",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Deep House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Mama's House (Mama Shelter)",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Teira",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "R&B"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Into The Woods",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Palma",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno",
+      "Club"
+    ],
+    "instagram": "",
+    "soundcloud": "palmacollective",
+    "note": "LA house scene — TUNNEL / MILLK",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Daniel Osahon",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — TUNNEL",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Sevyn",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Club"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — TUNNEL",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Miracles",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Grotto",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "J.dB",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno",
+      "Dub Techno",
+      "Deep House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Grotto",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "James Axon",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Disco",
+      "Hard House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Planet Love",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Miles Powers",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Vice Underground",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Flabbergast",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Vice Underground",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Kidd",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — SXTPS",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Kitty Logic",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Trans*cendent",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Perfect Lovers",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Por Detroit",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "DJ SuperNova",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Club",
+      "Latin"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Pangea Sound",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "DJ Benjamin Walker",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "R&B"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — EP&amp;LP Rooftop Brunch",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Jimmy Maheras",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Deep House",
+      "Disco",
+      "Tech House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Plastic Love",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Innsyter",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Club",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "L.A. Club Resource roster ('Poison Life')",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Emanuel Pippin",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Lo-fi House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "L.A. Club Resource ('Tracks From The Dungeon')",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Sabo",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Organic House",
+      "Afro House",
+      "Downtempo"
+    ],
+    "instagram": "",
+    "soundcloud": "solselectas",
+    "note": "LA house scene — Sol Selectas",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Helia Jamali",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Organic House",
+      "Downtempo"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Sol Selectas",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Blaq Pages",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Afro House",
+      "Amapiano",
+      "Afrobeats"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Afro GoGo",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "AC Slater",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Bass House",
+      "UK Garage",
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Night Bass",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Lauren Lane",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Tech House",
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA-based DJ/producer; global tech house circuit",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Boombox Cartel",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Bass House",
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA-based (Americo Garcia, Jorge Medina); relocated to LA 2012",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Mike Gao",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Beat/Bass",
+      "Minimal"
+    ],
+    "instagram": "",
+    "soundcloud": "mikegao",
+    "note": "LA-based producer/music technologist; LA beat scene & house crossover",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Subsuelo",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Latin House",
+      "Cumbia",
+      "Global Bass"
+    ],
+    "instagram": "",
+    "soundcloud": "subsuelocrew",
+    "note": "LA house scene — Subsuelo",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Juan Ramos",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Deep House",
+      "Disco"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "ESP Institute artist; LA in-store/scene mainstay (note: also tied to Berlin)",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Dick Ensalada",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Disco"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Take It Outside",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Pretty Gay Friendly",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Disco"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Take It Outside / Made To Move",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Thee-O",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Tech House",
+      "Funky House"
+    ],
+    "instagram": "theeo",
+    "soundcloud": "theeo",
+    "note": "LA house scene — Goodtimes LA",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Holly Adams",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Funky House"
+    ],
+    "instagram": "djhollyadams",
+    "soundcloud": "dj-holly-adams",
+    "note": "LA house scene — Goodtimes LA",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "DJ Lush",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Funky House",
+      "Tech House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Goodtimes LA",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Jesse Brooks",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Funky House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Goodtimes LA",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Thmp3R",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Tech House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Goodtimes LA",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Steven Ankele",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Deep House"
+    ],
+    "instagram": "",
+    "soundcloud": "sankele",
+    "note": "LA house scene — Goodtimes LA",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Joe Cuevro",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Funky House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Goodtimes LA",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Sowelu",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Tech House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Goodtimes LA",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Darin Westcott",
+    "region": "Greater LA",
+    "city": "Fullerton",
+    "genres": [
+      "House",
+      "Breaks",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "darin-westcott",
+    "note": "LA house scene — Goodtimes LA",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Ts Go!",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Disco"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Made To Move",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "KUDO",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Disco"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Made To Move",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Walter",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Disco"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Made To Move",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Automatton",
+    "region": "Greater LA",
+    "city": "Rowland Heights",
+    "genres": [
+      "House",
+      "Tech House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Housekeeper",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Rymx",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Tech House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Housekeeper",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Tovie Love",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Tech House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Housekeeper",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Car Car",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Tech House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Housekeeper",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Nick Morgan",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Tech House",
+      "Minimal",
+      "Progressive House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Apartment 503",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "HBB",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Tech House",
+      "Minimal"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Apartment 503",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "MIISH",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Tech House",
+      "Minimal"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Apartment 503",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Hector Moralez",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Jackin House",
+      "Deep House",
+      "UK Garage"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Substation",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "J-Dub",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Jackin House",
+      "Deep House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Substation",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Super Jenn",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Jackin House",
+      "Deep House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Substation",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Chainsnatcher",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Jackin House",
+      "UK Garage"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Substation",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Nick Alvarado",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Jackin House",
+      "Deep House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Substation",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Ricky Doubles",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Jackin House",
+      "UK Garage"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Substation",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Mathis Rousseau",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Jackin House",
+      "Deep House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Substation",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Anton Khabbaz",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Progressive House",
+      "Tech House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Dream Rooftop",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Movee On",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Progressive House",
+      "Tech House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Dream Rooftop",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Inka One",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Breaks"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Boombox",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Ben Diggin",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Breaks"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Boombox",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Analog",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Breaks"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Boombox",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Steve Prior",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Tech House",
+      "Deep House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Clinic Wednesdays / Couture",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Shanto",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Tech House",
+      "Deep House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Clinic Wednesdays / Couture",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Matt Ossentjuk",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Tech House",
+      "Deep House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Clinic Wednesdays / Couture",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Tres Mortimer",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Tikis Sanctuary",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Alanapolk",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Tikis Sanctuary",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Zamythi",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Club Music w/Out Borders",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Louie El Ser",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Club Music w/Out Borders",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Jugo",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Signal Lost",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Sexypat",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Signal Lost",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Santo",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Signal Lost",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Joel Looez",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Signal Lost",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "alice.km",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Tech House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — 624 S Anderson",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Vilena",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Indie Dance",
+      "House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Heart of Gold",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Kamino",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Progressive House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Day Trip",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Millero",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Progressive House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Day Trip",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Lumi",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Progressive House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Day Trip",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Adam Sellouk",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Tech House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Discip",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Gabss",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Tech House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Discip",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Welker",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Tech House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Discip",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "DJ Nativity",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Tropical",
+      "Merengue"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Trópico Tuesdays / La Cita",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "The Portuguese Lover",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Tropical"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Trópico Tuesdays / La Cita",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Mantron",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "House",
+      "Breaks"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Boombox",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Aleroj",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Tech House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Thermal",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "2deep",
+    "region": "Greater LA",
+    "city": "Los Angeles",
+    "genres": [
+      "Tech House",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Thermal",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Thomas Garcia",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House",
+      "Tech House",
+      "Deep House"
+    ],
+    "instagram": "thomasgarciavs",
+    "soundcloud": "thomasgarciamusic",
+    "note": "Latin-influenced house producer/DJ; CSULB grad, originally Santa Ana; A&R at Create Music Group",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Mike Angelo",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Ascend on Pine / Humans Only Club",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Colin James",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House",
+      "Deep House",
+      "Afro House"
+    ],
+    "instagram": "",
+    "soundcloud": "colin-james-official",
+    "note": "LA house scene — Secret Service LBC",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Salvad3r",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House",
+      "Disco"
+    ],
+    "instagram": "freakydeaky_djs",
+    "soundcloud": "",
+    "note": "LA house scene — Secret Service LBC / Freaky Deaky",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "GypCi",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House",
+      "Disco"
+    ],
+    "instagram": "freakydeaky_djs",
+    "soundcloud": "",
+    "note": "LA house scene — Secret Service LBC / Freaky Deaky",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Kharachi",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House",
+      "Disco",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Secret Service LBC",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Roc-A-Beat",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House",
+      "Disco",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Secret Service LBC",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Diskode",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House",
+      "Disco",
+      "Techno"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Secret Service LBC",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Mr. Koolaid",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "mrkoolaidofficial",
+    "note": "LA house scene — System: A House Music Affair",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Henry Gollete",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — System: A House Music Affair",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "George Cota",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — System: A House Music Affair",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Dakin",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House",
+      "Deep House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "Long Beach/OC deep house producer, multiple Beatport Top 10 releases; supported by Groove Armada, Wade",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Dennis Owens",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House",
+      "Funk",
+      "Soul"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — The Good Foot @ Alex's Bar",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Lili Bird",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House",
+      "Funk",
+      "Soul"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — The Good Foot @ Alex's Bar",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Scott Weaver",
+    "region": "Greater LA",
+    "city": "Long Beach",
+    "genres": [
+      "House",
+      "Funk",
+      "Soul"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — The Good Foot @ Alex's Bar",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Wobs",
+    "region": "Greater LA",
+    "city": "Orange County",
+    "genres": [
+      "Deep House",
+      "Funky House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Focus OC",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Trev One",
+    "region": "Greater LA",
+    "city": "Huntington Beach",
+    "genres": [
+      "House",
+      "Deep House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — True House Tuesdays @ The Circle OC",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Staley",
+    "region": "Greater LA",
+    "city": "Huntington Beach",
+    "genres": [
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — True House Tuesdays @ The Circle OC",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Knoe1",
+    "region": "Greater LA",
+    "city": "Huntington Beach",
+    "genres": [
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — True House Tuesdays @ The Circle OC",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Chris Hammett",
+    "region": "Greater LA",
+    "city": "Huntington Beach",
+    "genres": [
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Funky House Collective",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Ben Bennett",
+    "region": "Greater LA",
+    "city": "Huntington Beach",
+    "genres": [
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Funky House Collective",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Andrew Ramirez",
+    "region": "Greater LA",
+    "city": "Santa Ana",
+    "genres": [
+      "House"
+    ],
+    "instagram": "",
+    "soundcloud": "",
+    "note": "LA house scene — Forward Rhythm",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
+  },
+  {
+    "name": "Marie Vaunt",
+    "region": "Greater LA",
+    "city": "Costa Mesa",
+    "genres": [
+      "Techno",
+      "House"
+    ],
+    "instagram": "marievaunt",
+    "soundcloud": "",
+    "note": "LA house scene — Time Nightclub",
+    "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   }
 ];
