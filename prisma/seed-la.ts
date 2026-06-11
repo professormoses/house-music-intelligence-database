@@ -1,9 +1,6 @@
 // AUTO-GENERATED — Southern California house scene roster (Greater LA, San Diego, Inland Empire).
-// Compiled from WFHC multi-agent research across 50+ sources: RA, Desert Hearts, XLR8R,
-// Music is 4 Lovers, Dance Klassique, CV Independent, DJ Mag, Beatport, SoundCloud, Luma,
-// Dice, 19hz, Instagram lineups, and LA party/venue rosters (DJ Kerry/The Basement, Sunday
-// Sessions, Certified Groovers, Blind Tiger, Tea and House, Venice Fest, DEEP LA, Sirens,
-// WE LUV HOUSE, SOULNIC, Half n Half, Cumbiaton, Forward Rhythm, and more). 2026-06-11.
+// Compiled from WFHC multi-agent research across 50+ sources, with a dedicated social-handle
+// enrichment pass (Instagram/SoundCloud verified per artist). 2026-06-11.
 // Append new names here (or POST /api/add-artist) and re-seed; ingestion is merge-safe.
 export interface LARosterEntry {
   name: string;
@@ -41,7 +38,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House",
       "Afro House"
     ],
-    "instagram": "",
+    "instagram": "bigceezey",
     "soundcloud": "",
     "note": "Longtime resident opening DJ at DEEP LA; selector for Doc Martin's Sublevel; 'Lover of the Drum.' Foundational Black house figure.",
     "source": "EDM House Network / Grand Performances"
@@ -311,7 +308,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House",
       "Balearic"
     ],
-    "instagram": "",
+    "instagram": "suzannekraft",
     "soundcloud": "https://soundcloud.com/suzannekraft",
     "note": "LA deep house/leftfield producer cited in XLR8R feature",
     "source": "XLR8R"
@@ -407,7 +404,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Cosmic"
     ],
-    "instagram": "",
+    "instagram": "lovefingers",
     "soundcloud": "https://soundcloud.com/lovefingers",
     "note": "LA disco/house DJ, ESP Institute label founder",
     "source": "XLR8R"
@@ -434,7 +431,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "raiz-droid",
     "note": "LA underground house/techno DJ in XLR8R feature",
     "source": "XLR8R"
   },
@@ -446,8 +443,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "dirty_dave",
+    "soundcloud": "dirty_dave",
     "note": "LA house/techno DJ named in XLR8R scene feature",
     "source": "XLR8R"
   },
@@ -659,8 +656,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Minimal",
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "lopale_music",
+    "soundcloud": "lopale",
     "note": "Music Factory SD crew (Fabri Es & friends)",
     "source": "Resident Advisor Fabri Es profile"
   },
@@ -699,7 +696,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "pro-k-1",
     "note": "Music Factory SD crew",
     "source": "Resident Advisor Fabri Es profile"
   },
@@ -838,7 +835,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Tech House"
     ],
-    "instagram": "",
+    "instagram": "myroneugene",
     "soundcloud": "myroneugene",
     "note": "SD producer/DJ; on SGM Agency roster",
     "source": "Music is 4 Lovers Hometown Heroes / SGM Agency"
@@ -850,8 +847,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "jesusdapnk",
+    "soundcloud": "jesusdapnk",
     "note": "SD producer/DJ featured in Hometown Heroes",
     "source": "Music is 4 Lovers Hometown Heroes"
   },
@@ -863,7 +860,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "eric_medina",
     "note": "SD DJ featured in Hometown Heroes",
     "source": "Music is 4 Lovers Hometown Heroes"
   },
@@ -875,7 +872,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "alex-villalobos",
     "note": "SD DJ featured in Hometown Heroes",
     "source": "Music is 4 Lovers Hometown Heroes"
   },
@@ -888,7 +885,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House",
       "Acid House"
     ],
-    "instagram": "",
+    "instagram": "ericleonardis",
     "soundcloud": "eric-leonardis",
     "note": "SD DJ/producer (neuroscientist by day); resident House Music Fridays at AC Lounge",
     "source": "Resident Advisor / SDVoyager / lajolla.com"
@@ -902,7 +899,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "matthewbrian",
     "note": "Resident DJ, House Music Fridays at Air Conditioned Lounge, North Park",
     "source": "Air Conditioned Lounge events"
   },
@@ -1183,7 +1180,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House",
       "Boogie"
     ],
-    "instagram": "",
+    "instagram": "giftedandblessed",
     "soundcloud": "gifted-and-blessed",
     "note": "LA house/boogie producer (XLR8R LA feature)",
     "source": "xlr8r.com"
@@ -1212,8 +1209,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Healing House",
       "Deep House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "lincolnjesser",
+    "soundcloud": "lincolnjesser",
     "note": "Coachella Valley-raised producer/DJ; creator of the 'Healing House' movement blending house with solfeggio/healing frequencies. Profiled by Palm Springs Life and ShoutoutLA.",
     "source": "palmspringslife.com; shoutoutla.com; lincolnjesser.com"
   },
@@ -1240,8 +1237,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "French House",
       "Deep House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "alexharringtondj",
+    "soundcloud": "djalexharrington",
     "note": "20-year Coachella Valley DJ veteran; resident of the Disco Inferno house/disco night at Reforma Palm Springs, has played Splash House. Records as 'All Night Shoes' (Beatport).",
     "source": "cvindependent.com/2023/07/disco-with-house-three-local-djs...; beatport.com/artist/alex-harrington"
   },
@@ -1320,7 +1317,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Techno"
     ],
-    "instagram": "",
+    "instagram": "femmea_official",
     "soundcloud": "",
     "note": "Female DJ in the Coachella Valley underground; collaborator with DJ Sugarfree and Aylex Song organizing underground desert electronic/rave events in the Indio area.",
     "source": "cvindependent.com/2019/10/taking-things-underground-dj-sugarfree..."
@@ -1401,8 +1398,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House",
       "Disco"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "drackmuse",
+    "soundcloud": "drackmuse",
     "note": "Co-founder/Creative Director of SOULNIC festival & Extra Mild Sauce collective; international soulful-house DJ.",
     "source": "soulnic.tv/foundation/our-board"
   },
@@ -1415,8 +1412,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Kuduro",
       "Soca"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "foreignerrrrr",
+    "soundcloud": "foreignerrrrr",
     "note": "Co-founder of Rail Up; afro-house/kuduro DJ; studio owner. Afrodiasporic dance focus.",
     "source": "daily.redbullmusicacademy.com Rail Up roundtable"
   },
@@ -1471,8 +1468,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Cumbia",
       "Tropical Bass"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "zuri.adia",
+    "soundcloud": "zuriadia",
     "note": "Afro-Chicana DJ; performed at Cumbiatón 'Womxn of Cumbia.' Afro-Latina selector.",
     "source": "dola.com Cumbiatón Echoplex listing; remezcla.com"
   },
@@ -1485,8 +1482,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Cumbia",
       "Club"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "killedbysynth",
+    "soundcloud": "KILLEDBYSYNTH",
     "note": "Resident of Butchona (queer Mexican/Spanish music party) and Cumbiatón-affiliated.",
     "source": "calonews.com queer Latinx DJs; dola.com"
   },
@@ -1527,8 +1524,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Techno",
       "Disco"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "chriscruse",
+    "soundcloud": "chriscruse",
     "note": "Founder of Spotlight warehouse party (2012); pillar of LA queer underground.",
     "source": "djmag.com LA queer underground"
   },
@@ -1540,8 +1537,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Disco"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "djmashamar",
+    "soundcloud": "mashamar",
     "note": "Co-founder of Take It Outside (FLINTA*-centered LA party).",
     "source": "djmag.com LA queer underground"
   },
@@ -1554,8 +1551,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Club",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "bigworldlittlekidd",
+    "soundcloud": "kiddthedj",
     "note": "Co-founder of SXTPS, party centering Black & Brown queer/trans people.",
     "source": "djmag.com LA queer underground"
   },
@@ -1597,7 +1594,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Club"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "perfect-lovers",
     "note": "Co-runs Por Detroit LA (Latin American artist spotlight); queer underground.",
     "source": "djmag.com LA queer underground"
   },
@@ -1609,8 +1606,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "dj_victor_rodriguez",
+    "soundcloud": "dj-victor-rodriguez",
     "note": "Co-founder of Ostbahnhof; part of Bears In Space duo. LA queer/Latinx underground.",
     "source": "djmag.com LA queer underground"
   },
@@ -1623,7 +1620,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Psychedelic"
     ],
-    "instagram": "",
+    "instagram": "serg0007",
     "soundcloud": "",
     "note": "Resident of Planet Love (LA queer underground party).",
     "source": "djmag.com LA queer underground"
@@ -1650,7 +1647,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Deep House"
     ],
-    "instagram": "",
+    "instagram": "juliet__mendoza",
     "soundcloud": "dancetelevision",
     "note": "LA-based Latina DJ/producer/educator; 'house is a feeling.' dublab DJ.",
     "source": "julietmendoza.com; dublab.com/djs/juliet-mendoza"
@@ -1676,8 +1673,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "Soulful House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "theampcollective",
+    "soundcloud": "ampcollective",
     "note": "Half of The AMP Collective, LA soulful house duo behind BLEND LA Podcast.",
     "source": "podcasts.apple.com BLEND LA"
   },
@@ -1715,8 +1712,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "johntejadaofficial",
+    "soundcloud": "johntejadaofficial",
     "note": "Pillar of LA electronic community; decades of deep-house/techno releases & sharp DJ sets.",
     "source": "ra.co MELT event; defected.com"
   },
@@ -1728,8 +1725,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Dub Techno",
       "Deep House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "miraclestew",
+    "soundcloud": "miraclestew",
     "note": "Co-organizer of Grotto warehouse loft party in LA underground.",
     "source": "djmag.com LA queer underground"
   },
@@ -1741,8 +1738,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Deep House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "mezmonty",
+    "soundcloud": "mezmonty",
     "note": "Co-founder of Signal Underground (house-focused LA underground party).",
     "source": "djmag.com LA queer underground"
   },
@@ -1754,8 +1751,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House",
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "tyler__chase",
+    "soundcloud": "tyler-chase-10",
     "note": "Beloved San Diego house artist; debut released via Music is 4 Lovers label.",
     "source": "musicis4lovers.com/black-magic"
   },
@@ -1768,7 +1765,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "kidislive",
     "note": "San Diego-born house artist; launched Mad Motel label; featured by Music is 4 Lovers.",
     "source": "musicis4lovers.com Kidislive interview"
   },
@@ -1781,7 +1778,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "9oh9_music",
     "note": "La Familia Collective (Inland Empire); residencies at The Hideaway Lounge & Brooks Bar, Riverside.",
     "source": "simplisticlive.squarespace.com Inland Empire podcast"
   },
@@ -1794,8 +1791,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Club",
       "Diasporic"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "senaykenfe",
+    "soundcloud": "cenai",
     "note": "Guest performer/selector tied to Rail Up; LA Black diasporic music community.",
     "source": "daily.redbullmusicacademy.com Rail Up roundtable"
   },
@@ -1822,8 +1819,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Dembow",
       "Tropical Bass"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "djbembona",
+    "soundcloud": "djbembona",
     "note": "Afro-Latina (Puerto Rican-Panamanian) DJ regularly featured in LA Cumbiatón/queer Latinx events; Afro-Diasporadical movement.",
     "source": "dola.com Cumbiatón Echoplex; remezcla.com Afro-Latine DJs"
   },
@@ -1901,7 +1898,7 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
+    "instagram": "jhnsnbrwn",
     "soundcloud": "",
     "note": "LA house scene — Tea and House",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -1950,8 +1947,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "foreverseeps",
+    "soundcloud": "foreverseeps",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2010,8 +2007,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "skyriverrs",
+    "soundcloud": "skyrivers",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2085,8 +2082,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "nostradahm",
+    "soundcloud": "nostradahm",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2109,7 +2106,7 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
+    "instagram": "cowbunz",
     "soundcloud": "",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -2122,7 +2119,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "mawazination",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2133,8 +2130,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "giovamusicofficial",
+    "soundcloud": "giovamusicofficial",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2145,7 +2142,7 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
+    "instagram": "sabrosuraboyz",
     "soundcloud": "sabrosura-boyz",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -2157,8 +2154,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "d_zeledon",
+    "soundcloud": "dzeledon",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2193,8 +2190,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "drewme_",
+    "soundcloud": "djshroomie",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2220,7 +2217,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "liquidearthmusic",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2231,8 +2228,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "rntnl",
+    "soundcloud": "michaelfam",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2243,8 +2240,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "computrdata",
+    "soundcloud": "computerdata",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2256,7 +2253,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "a_borbi",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2267,8 +2264,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "naomigreeen",
+    "soundcloud": "itsnaomigreen",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2279,8 +2276,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "monolithicmonolithic",
+    "soundcloud": "monolithic-monolithic",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2291,8 +2288,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "akumenmusic",
+    "soundcloud": "akumenmusic",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2303,8 +2300,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "enzomuro",
+    "soundcloud": "enzo-muro",
     "note": "LA house scene — Certified Groovers",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2315,8 +2312,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "jessiecalistri",
+    "soundcloud": "jessiecalistri",
     "note": "LA house scene — Certified Groovers; Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2365,7 +2362,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "yairlimon",
     "note": "LA house scene — Certified Groovers; Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2405,8 +2402,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "itsnicomusic",
+    "soundcloud": "itsnicomusic",
     "note": "LA house scene — Blind Tiger",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2431,8 +2428,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Tech House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "alexagaxi",
+    "soundcloud": "alexagaxi",
     "note": "LA house scene — Blind Tiger",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2457,7 +2454,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Tech House"
     ],
-    "instagram": "",
+    "instagram": "dreanisme",
     "soundcloud": "",
     "note": "LA house scene — Blind Tiger",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -2484,7 +2481,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tech House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "nu-banksmusic",
     "note": "LA house scene — Blind Tiger",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2522,8 +2519,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Tech House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "chasewest",
+    "soundcloud": "chase_west",
     "note": "LA house scene — Blind Tiger",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2535,7 +2532,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "mr-krane",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2546,8 +2543,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "arthur_onni",
+    "soundcloud": "onnimusic",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2559,7 +2556,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "monoclick",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2570,8 +2567,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "stereokitchenla",
+    "soundcloud": "stereo1kitchen",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2583,7 +2580,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "dj-pirumov",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2594,8 +2591,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "airs_._",
+    "soundcloud": "alexayers",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2630,8 +2627,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "kimmtae",
+    "soundcloud": "kimmtae",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2642,8 +2639,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "grisha.dj",
+    "soundcloud": "dj-grisha",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2654,8 +2651,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "nemahan_",
+    "soundcloud": "nemahan",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2666,8 +2663,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "mk___salt",
+    "soundcloud": "public-alchemist",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2678,8 +2675,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "olivia.sugar",
+    "soundcloud": "olivia_sugar",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2703,7 +2700,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "jason_douglas",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2715,7 +2712,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "neekorouge",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2762,8 +2759,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "kikemayor",
+    "soundcloud": "kike-mayor",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2798,8 +2795,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "pablodiscobardj",
+    "soundcloud": "pablodiscobardjs",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2810,8 +2807,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "highkin_mrbl",
+    "soundcloud": "highkin",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -2822,7 +2819,7 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
+    "instagram": "decibelgardens",
     "soundcloud": "",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -2858,7 +2855,7 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
+    "instagram": "_djarman__",
     "soundcloud": "",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -2885,7 +2882,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House",
       "Minimal"
     ],
-    "instagram": "",
+    "instagram": "johnkimble_udm",
     "soundcloud": "",
     "note": "LA house scene — Sunday Sessions; Sunday Sessions LA",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -2948,8 +2945,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "tyserna_",
+    "soundcloud": "soundslikeserna",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3009,7 +3006,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "davidpaglia",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3020,8 +3017,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "H.U.D.L_",
+    "soundcloud": "hudllovesyou",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3032,8 +3029,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "slowmouth_kr",
+    "soundcloud": "slowmouth",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3057,7 +3054,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "demenzlive",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3068,8 +3065,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "itzvandj",
+    "soundcloud": "itzvan",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3092,8 +3089,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "______shvili",
+    "soundcloud": "djshvili",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3128,8 +3125,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "djtjizza",
+    "soundcloud": "tj-wijffels",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3140,8 +3137,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "shaquedj",
+    "soundcloud": "shaquedj",
     "note": "LA house scene — Sunday Sessions",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3208,7 +3205,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tech House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "houserollmusic",
     "note": "LA house scene — Insomniac Records",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3247,7 +3244,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Deep House"
     ],
-    "instagram": "",
+    "instagram": "sunflwrmusic",
     "soundcloud": "sunflwr",
     "note": "LA-based dreamy house producer",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -3260,7 +3257,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House",
       "Tech House"
     ],
-    "instagram": "",
+    "instagram": "andreiosyka",
     "soundcloud": "droog-la-1",
     "note": "LA house scene — Droog / Culprit LA",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -3299,7 +3296,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Techno"
     ],
-    "instagram": "",
+    "instagram": "cyrilbitar",
     "soundcloud": "",
     "note": "LA house scene — Minimal Effort",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -3338,8 +3335,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Disco"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "s0ulpurpose",
+    "soundcloud": "soulpurposeworld",
     "note": "LA house scene — Millk",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3363,8 +3360,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "elliot_dehoyos",
+    "soundcloud": "elliot-dehoyos",
     "note": "LA house scene — WE LUV HOUSE",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3425,7 +3422,7 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
+    "instagram": "roxcizzle",
     "soundcloud": "",
     "note": "LA house scene — SOULNIC",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -3437,8 +3434,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "Afro House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "djkaraba",
+    "soundcloud": "djkaraba",
     "note": "LA house scene — Half n Half",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3461,8 +3458,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "Afro House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "littledinosaur",
+    "soundcloud": "little-dinosaur",
     "note": "LA house scene — Half n Half",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3510,8 +3507,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Afro House",
       "Deep House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "marklewismusik",
+    "soundcloud": "marklewismusik",
     "note": "LA house scene — Cielo Farms",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3601,8 +3598,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Disco"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "djchrisbowen",
+    "soundcloud": "chrisbowenla",
     "note": "LA house scene — Bears In Space",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3626,8 +3623,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "sonns___",
+    "soundcloud": "sonns",
     "note": "LA house scene — Making Shapes",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3652,7 +3649,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Disco",
       "Acid"
     ],
-    "instagram": "",
+    "instagram": "scott__K",
     "soundcloud": "",
     "note": "LA house scene — We Own The Night LA",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -3665,7 +3662,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Disco"
     ],
-    "instagram": "",
+    "instagram": "carbonfubar",
     "soundcloud": "",
     "note": "LA house scene — We Own The Night LA",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -3717,8 +3714,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tech House",
       "Minimal"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "maeyomusic",
+    "soundcloud": "maeyo",
     "note": "LA house scene — House//Minimal",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3730,7 +3727,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tech House",
       "Minimal"
     ],
-    "instagram": "",
+    "instagram": "errolbangz",
     "soundcloud": "",
     "note": "LA house scene — House//Minimal",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -3844,7 +3841,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "nic0shi",
     "note": "LA house scene — Sirens",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3882,8 +3879,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Club",
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "lil_m_",
+    "soundcloud": "1i1-m",
     "note": "LA house scene — Rail Up",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3919,8 +3916,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "aplexmuzik",
+    "soundcloud": "aplexaplex",
     "note": "LA house scene — Deep House Brunch",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3968,8 +3965,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Deep House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "josh_billings",
+    "soundcloud": "joshbillings",
     "note": "LA house scene — Focus OC",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3982,8 +3979,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Techno",
       "Chicago House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "djnonfiction",
+    "soundcloud": "djnonfiction",
     "note": "LA house scene — Focus OC",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -3996,8 +3993,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Afro House",
       "Tribal House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "sweetnectarmusic",
+    "soundcloud": "sweetnectarmusic",
     "note": "LA house scene — Endless Summer After Dark",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4136,7 +4133,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "danieltmusic",
     "note": "LA house scene — The Basement",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4172,8 +4169,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "laalls",
+    "soundcloud": "laalls",
     "note": "LA house scene — The Basement",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4196,8 +4193,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "salmon247",
+    "soundcloud": "dj_samwise",
     "note": "LA house scene — The Basement",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4737,8 +4734,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "djjjflores",
+    "soundcloud": "djjjflores",
     "note": "LA house scene — Mama's House (Mama Shelter)",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4763,8 +4760,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "R&B"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "iamteira",
+    "soundcloud": "iamteira",
     "note": "LA house scene — Into The Woods",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4777,7 +4774,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Techno",
       "Club"
     ],
-    "instagram": "",
+    "instagram": "paalllmmaa",
     "soundcloud": "palmacollective",
     "note": "LA house scene — TUNNEL / MILLK",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -4790,8 +4787,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "daniel.osahon",
+    "soundcloud": "dosahon",
     "note": "LA house scene — TUNNEL",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4803,8 +4800,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Club"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "indigosevyn",
+    "soundcloud": "sevyn_sounds",
     "note": "LA house scene — TUNNEL",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4816,8 +4813,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "miraclestew",
+    "soundcloud": "miraclestew",
     "note": "LA house scene — Grotto",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4845,8 +4842,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Disco",
       "Hard House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "james_axon_",
+    "soundcloud": "jamesaxon",
     "note": "LA house scene — Planet Love",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4858,8 +4855,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "milesjpowers",
+    "soundcloud": "milespowers",
     "note": "LA house scene — Vice Underground",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4871,8 +4868,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "flabbergast4eva",
+    "soundcloud": "flabbergast4eva",
     "note": "LA house scene — Vice Underground",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4883,7 +4880,7 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
+    "instagram": "bigworldlittlekidd",
     "soundcloud": "",
     "note": "LA house scene — SXTPS",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -4896,8 +4893,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "kitty.logic",
+    "soundcloud": "kitty_logic",
     "note": "LA house scene — Trans*cendent",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4909,8 +4906,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "per_fectlovers",
+    "soundcloud": "perfect-lovers",
     "note": "LA house scene — Por Detroit",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4923,8 +4920,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Club",
       "Latin"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "djsupernova",
+    "soundcloud": "iamsupernova",
     "note": "LA house scene — Pangea Sound",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4936,8 +4933,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "R&B"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "djbenjaminwalker",
+    "soundcloud": "dj-benjamin-walker",
     "note": "LA house scene — EP&amp;LP Rooftop Brunch",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4951,7 +4948,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tech House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "maheras",
     "note": "LA house scene — Plastic Love",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -4977,8 +4974,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Lo-fi House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "dj_spookie_aka_dj_emanuel",
+    "soundcloud": "dj-emanuel-pippin",
     "note": "L.A. Club Resource ('Tracks From The Dungeon')",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5004,7 +5001,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Organic House",
       "Downtempo"
     ],
-    "instagram": "",
+    "instagram": "heliajamali",
     "soundcloud": "",
     "note": "LA house scene — Sol Selectas",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -5018,8 +5015,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Amapiano",
       "Afrobeats"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "blaq.pages",
+    "soundcloud": "blaqpages",
     "note": "LA house scene — Afro GoGo",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5032,8 +5029,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "UK Garage",
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "djacslater",
+    "soundcloud": "acslater",
     "note": "LA house scene — Night Bass",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5045,8 +5042,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tech House",
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "laurenlanequestionmark",
+    "soundcloud": "laurenlane",
     "note": "LA-based DJ/producer; global tech house circuit",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5058,8 +5055,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Bass House",
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "boomboxcartel",
+    "soundcloud": "boomboxcartel",
     "note": "LA-based (Americo Garcia, Jorge Medina); relocated to LA 2012",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5086,7 +5083,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Cumbia",
       "Global Bass"
     ],
-    "instagram": "",
+    "instagram": "subsuelocrew",
     "soundcloud": "subsuelocrew",
     "note": "LA house scene — Subsuelo",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -5113,8 +5110,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Disco"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "dickens.alada",
+    "soundcloud": "dickensalada",
     "note": "LA house scene — Take It Outside",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5126,8 +5123,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Disco"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "prettygayfriendly",
+    "soundcloud": "prettygayfriendly",
     "note": "LA house scene — Take It Outside / Made To Move",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5180,8 +5177,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Funky House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "djjessebrooks",
+    "soundcloud": "djjessebrooks",
     "note": "LA house scene — Goodtimes LA",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5206,7 +5203,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Deep House"
     ],
-    "instagram": "",
+    "instagram": "djstevenankele",
     "soundcloud": "sankele",
     "note": "LA house scene — Goodtimes LA",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -5219,8 +5216,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Funky House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "deejaycuervo",
+    "soundcloud": "jose-cuevro",
     "note": "LA house scene — Goodtimes LA",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5232,8 +5229,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Tech House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "sowelu.is.miss.antigravity",
+    "soundcloud": "sowelu",
     "note": "LA house scene — Goodtimes LA",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5246,7 +5243,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Breaks",
       "Techno"
     ],
-    "instagram": "",
+    "instagram": "djdarinwestcott",
     "soundcloud": "darin-westcott",
     "note": "LA house scene — Goodtimes LA",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -5351,8 +5348,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Minimal",
       "Progressive House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "itsnickmorgan",
+    "soundcloud": "itsnickmorgan",
     "note": "LA house scene — Apartment 503",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5364,8 +5361,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tech House",
       "Minimal"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "dj_hbb",
+    "soundcloud": "dj_hbb",
     "note": "LA house scene — Apartment 503",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5377,8 +5374,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tech House",
       "Minimal"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "itsmiish",
+    "soundcloud": "ketamiish",
     "note": "LA house scene — Apartment 503",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5391,8 +5388,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House",
       "UK Garage"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "hectormoralez_",
+    "soundcloud": "hectormoralez",
     "note": "LA house scene — Substation",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5405,7 +5402,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "djjdubmusic",
     "note": "LA house scene — Substation",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5431,7 +5428,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "UK Garage"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "chain-snatcher",
     "note": "LA house scene — Substation",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5457,7 +5454,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "UK Garage"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "rickydoubles",
     "note": "LA house scene — Substation",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5470,7 +5467,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "mathis-rousseau",
     "note": "LA house scene — Substation",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5482,8 +5479,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Progressive House",
       "Tech House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "antonkhabbaz",
+    "soundcloud": "anton_khabbaz",
     "note": "LA house scene — Dream Rooftop",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5496,7 +5493,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tech House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "moveeonofficialmusic",
     "note": "LA house scene — Dream Rooftop",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5508,8 +5505,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Breaks"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "inka_one",
+    "soundcloud": "inka_one",
     "note": "LA house scene — Boombox",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5521,8 +5518,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Breaks"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "ben_diggin",
+    "soundcloud": "produced.by.ben.diggin",
     "note": "LA house scene — Boombox",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5547,8 +5544,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tech House",
       "Deep House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "djsteveprior",
+    "soundcloud": "djsteveprior",
     "note": "LA house scene — Clinic Wednesdays / Couture",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5560,8 +5557,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tech House",
       "Deep House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "djshanto",
+    "soundcloud": "djshanto",
     "note": "LA house scene — Clinic Wednesdays / Couture",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5573,8 +5570,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tech House",
       "Deep House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "mattossentjuk",
+    "soundcloud": "mattossentjuk",
     "note": "LA house scene — Clinic Wednesdays / Couture",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5585,8 +5582,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "tresmortimer",
+    "soundcloud": "tresmortimer",
     "note": "LA house scene — Tikis Sanctuary",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5610,8 +5607,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "zamythi",
+    "soundcloud": "zamythi",
     "note": "LA house scene — Club Music w/Out Borders",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5623,8 +5620,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "louielser",
+    "soundcloud": "louielsermusic",
     "note": "LA house scene — Club Music w/Out Borders",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5688,8 +5685,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tech House",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "alice.km_",
+    "soundcloud": "alicekm",
     "note": "LA house scene — 624 S Anderson",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5702,8 +5699,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "vilena.official",
+    "soundcloud": "vilena_official",
     "note": "LA house scene — Heart of Gold",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5714,8 +5711,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "Progressive House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "kamino",
+    "soundcloud": "Kamino",
     "note": "LA house scene — Day Trip",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5726,8 +5723,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "Progressive House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "millero_music",
+    "soundcloud": "milleromusic",
     "note": "LA house scene — Day Trip",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5738,8 +5735,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "Progressive House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "dj.lumi",
+    "soundcloud": "deejaylumi",
     "note": "LA house scene — Day Trip",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5750,8 +5747,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "Tech House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "adamsellouk",
+    "soundcloud": "adamselloukmusic",
     "note": "LA house scene — Discip",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5774,8 +5771,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "Tech House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "welkermusic",
+    "soundcloud": "welkerdj",
     "note": "LA house scene — Discip",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5788,8 +5785,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Tropical",
       "Merengue"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "nativitymusic",
+    "soundcloud": "nativitymusic",
     "note": "LA house scene — Trópico Tuesdays / La Cita",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5880,7 +5877,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Deep House",
       "Afro House"
     ],
-    "instagram": "",
+    "instagram": "colinjamesmusic",
     "soundcloud": "colin-james-official",
     "note": "LA house scene — Secret Service LBC",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -5921,7 +5918,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Techno"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "kharachi",
     "note": "LA house scene — Secret Service LBC",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -5948,8 +5945,8 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Disco",
       "Techno"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "diskodemusic",
+    "soundcloud": "diskode",
     "note": "LA house scene — Secret Service LBC",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -6011,7 +6008,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Funk",
       "Soul"
     ],
-    "instagram": "",
+    "instagram": "djdennisowens",
     "soundcloud": "",
     "note": "LA house scene — The Good Foot @ Alex's Bar",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -6025,7 +6022,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "Funk",
       "Soul"
     ],
-    "instagram": "",
+    "instagram": "djlilibird",
     "soundcloud": "",
     "note": "LA house scene — The Good Foot @ Alex's Bar",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
@@ -6089,8 +6086,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "knoe1",
+    "soundcloud": "knoe1",
     "note": "LA house scene — True House Tuesdays @ The Circle OC",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -6101,8 +6098,8 @@ export const LA_ROSTER: LARosterEntry[] = [
     "genres": [
       "House"
     ],
-    "instagram": "",
-    "soundcloud": "",
+    "instagram": "chrishammettmusic",
+    "soundcloud": "chrishammett",
     "note": "LA house scene — Funky House Collective",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
@@ -6114,7 +6111,7 @@ export const LA_ROSTER: LARosterEntry[] = [
       "House"
     ],
     "instagram": "",
-    "soundcloud": "",
+    "soundcloud": "user-653862130",
     "note": "LA house scene — Funky House Collective",
     "source": "LA party/venue research (RA, Dice, Luma, SoundCloud, Instagram, 19hz)"
   },
