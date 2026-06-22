@@ -2,12 +2,9 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SCENES } from './scenes';
-
-const Globe = dynamic(() => import('./Globe'), { ssr: false });
+import HouseGlobe from './HouseGlobe';
 
 export interface LandingProps {
   counts: { artists: number; labels: number; subgenres: number; edges: number; events: number; sources: number };
@@ -150,14 +147,11 @@ export default function LandingExperience({ counts, featured, subgenres, sceneCo
             </dl>
           </div>
 
-          {/* Globe */}
+          {/* Globe (interactive dot-globe — click a city to travel the directory) */}
           <div data-hero className="relative">
-            <div className="relative h-[300px] sm:h-[420px] lg:h-[560px] w-full">
-              <Globe />
-              <div className="pointer-events-none absolute inset-0 rounded-full" />
-            </div>
+            <HouseGlobe sceneCounts={sceneCounts} rail={false} />
             <p className="text-center text-xs text-muted mt-2 font-mono">
-              From a Chicago warehouse to the world — drag to spin
+              From a Chicago warehouse to the world — drag to spin, tap a city
             </p>
           </div>
         </div>
@@ -220,26 +214,8 @@ export default function LandingExperience({ counts, featured, subgenres, sceneCo
               amapiano. Tap a city to travel the directory and meet the people moving it there.
             </p>
           </div>
-          <div className="reveal mt-8 flex flex-wrap gap-2">
-            {SCENES.map((s) => {
-              const c = sceneCounts[s.city] || 0;
-              return (
-                <Link
-                  key={s.name}
-                  href={s.city === 'Los Angeles' ? '/la' : `/?city=${encodeURIComponent(s.city)}`}
-                  title={s.note}
-                  className={`group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition ${
-                    s.origin
-                      ? 'border-accent2/60 bg-accent2/10 text-accent2 hover:bg-accent2/20'
-                      : 'border-edge text-zinc-300 hover:border-accent hover:text-white'
-                  }`}
-                >
-                  {s.origin && <span className="text-[10px] uppercase tracking-wide">origin</span>}
-                  {s.name}
-                  {c > 0 && <span className="text-xs text-muted tabular-nums group-hover:text-accent2">{c}</span>}
-                </Link>
-              );
-            })}
+          <div className="reveal mt-8">
+            <HouseGlobe sceneCounts={sceneCounts} />
           </div>
         </div>
       </section>
